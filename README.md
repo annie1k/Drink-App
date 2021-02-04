@@ -33,3 +33,23 @@ from weakness for more than a month. Therefore, I want to design a water
 drinking reminder application for people like her to keep her kidney healthier.
 The application will have clean interface and no ads. for better user
 experience.
+
+
+**User Stories**:
+
+- As a user, I want to be able to get a suggested daily drinking
+according to my age and gender.
+  
+- As a user, I want to be able to edit my daily goals according to the daily needs
+  (say want to drink more for days have heavy sports activity).
+  
+- As a user, I want to be able to have visualized water drinking
+process for the day.
+  
+- As a user, I want to be able to get some warm encourage after achieving
+my daily goal.
+  
+- As a user, I want to be able to tracking my water drinking history
+by some understandable and easy read graphs.
+  
+- As a user, I hope it is a free and clean application.
