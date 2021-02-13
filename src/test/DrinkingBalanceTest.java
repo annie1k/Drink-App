@@ -1,4 +1,4 @@
-import model.TodayDrinkingBalance;
+import model.DrinkingBalance;
 import model.TodayDrinkingGoal;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -6,22 +6,24 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 // Unit tests for TodayDrinkingBalanceTest class
-public class TodayDrinkingBalanceTest {
-    private TodayDrinkingBalance balance;
+public class DrinkingBalanceTest {
+    private DrinkingBalance balance;
     private TodayDrinkingGoal goal;
     private int CHANGE_VALUE = 1;
     private int INITIAL_VALUE = 500;
 
     @BeforeEach
     public void runBefore(){
-        balance = new TodayDrinkingBalance();
+        balance = new DrinkingBalance(1,1,2021);
         goal = new TodayDrinkingGoal(INITIAL_VALUE);
     }
 
     @Test
     public void testTodayDrinkingBalance() {
         balance.addBalance(CHANGE_VALUE);
+        String actual = balance.getDate();
         assertEquals(CHANGE_VALUE, balance.getBalance());
+        assertEquals("01-01-2021", actual);
     }
 
     @Test
@@ -68,4 +70,37 @@ public class TodayDrinkingBalanceTest {
         balance.addBalance(INITIAL_VALUE + CHANGE_VALUE);
         assertTrue(balance.isAchieved());
     }
+        @Test
+    public void testGetData() {
+        String actual = balance.getDate();
+        assertEquals("01-01-2021",actual);
+    }
+
+    @Test
+    public void testCleanFormatSingle() {
+        int i = 1;
+        assertEquals("" + "0" + 1, balance.cleanFormat(i));
+    }
+
+    @Test
+    public void testCleanFormatDualWithZero() {
+        int i = 01;
+        assertEquals("" + "0" + i, balance.cleanFormat(i));
+    }
+
+    @Test
+    public void testCleanFormatDualWithoutZero() {
+        int i = 10;
+        assertEquals("" + i, balance.cleanFormat(i));
+    }
+
+    @Test
+    public void testCombineDateBalance() {
+        balance.addBalance(CHANGE_VALUE);
+        String date = balance.getDate();
+        assertEquals("01-01-2021" +" corresponding balance: "+ CHANGE_VALUE,
+                date +" corresponding balance: "+ balance.getBalance());
+
+    }
 }
+

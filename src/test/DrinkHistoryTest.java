@@ -1,5 +1,6 @@
-import model.DrinkDate;
+import model.DrinkingBalance;
 import model.DrinkHistory;
+import model.DrinkingBalance;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -8,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 // Unit tests for DrinkHistory class
 public class DrinkHistoryTest {
     private DrinkHistory emptyHistory;
-    private DrinkDate date = new DrinkDate(1,1,2021);
+    private DrinkingBalance balance = new DrinkingBalance(1,1,2021);
 
     @BeforeEach
     public void runBefore() {
@@ -22,15 +23,15 @@ public class DrinkHistoryTest {
 
     @Test
     public void testAddDateOnce() {
-        emptyHistory.addDate(date);
+        emptyHistory.addDate(balance);
         assertEquals(1, emptyHistory.numDatesRecorded());
     }
 
     @Test
     public void testAddDateMultiple() {
-        emptyHistory.addDate(date);
-        emptyHistory.addDate(date);
-        emptyHistory.addDate(date);
+        emptyHistory.addDate(balance);
+        emptyHistory.addDate(balance);
+        emptyHistory.addDate(balance);
         assertEquals(3, emptyHistory.numDatesRecorded());
     }
 }
