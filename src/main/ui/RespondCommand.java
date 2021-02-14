@@ -14,7 +14,7 @@ public class RespondCommand {
 
     int day = Calendar.DAY_OF_MONTH;
     int month = Calendar.MONTH;
-    int year = Calendar.YEAR;
+    int year = 2020 + Calendar.YEAR;
 
 
     private static final String MEDAL_COMMAND = "medal bag";
@@ -44,9 +44,9 @@ public class RespondCommand {
     int month1 = month--;
     int month2 = month1--;
     int month3 = month2--;
-    int year1 = year--;
-    int year2 = year1--;
-    int year3 = year2--;
+    int year1 = 2000;
+    int year2 = 2001;
+    int year3 = 2002;
 
     DrinkingBalance drinkingBalance1 = new DrinkingBalance(day1,month1,year1,balance1);
     DrinkingBalance drinkingBalance2 = new DrinkingBalance(day2,month2,year2,balance2);
