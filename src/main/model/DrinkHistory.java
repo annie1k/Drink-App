@@ -27,4 +27,9 @@ public class DrinkHistory {
         return this.drinkHistory.size();
     }
 
+    // EFFECT: return the history
+    public List<DrinkingBalance> getDrinkHistory() {
+        return this.drinkHistory;
+    }
+
 }

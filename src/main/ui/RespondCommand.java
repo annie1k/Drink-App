@@ -16,6 +16,7 @@ public class RespondCommand {
     int month = Calendar.MONTH;
     int year = Calendar.YEAR;
 
+
     private static final String MEDAL_COMMAND = "medal bag";
     private static final String HISTORY_COMMAND = "history";
     private static final String TODAY_BALANCE_ADD_COMMAND = "add balance";
@@ -34,10 +35,31 @@ public class RespondCommand {
     private TodayDrinkingGoal goal = new TodayDrinkingGoal(500);
     private DrinkingBalance balance = new DrinkingBalance(day,month,year);
 
+    int balance1 = 100;
+    int balance2 = 200;
+    int balance3 = 300;
+    int day1 = day--;
+    int day2 = day1--;
+    int day3 = day2--;
+    int month1 = month--;
+    int month2 = month1--;
+    int month3 = month2--;
+    int year1 = year--;
+    int year2 = year1--;
+    int year3 = year2--;
+
+    DrinkingBalance drinkingBalance1 = new DrinkingBalance(day1,month1,year1,balance1);
+    DrinkingBalance drinkingBalance2 = new DrinkingBalance(day2,month2,year2,balance2);
+    DrinkingBalance drinkingBalance3 = new DrinkingBalance(day3,month3,year3,balance3);
+
     // EFFECTS: start the application
     public RespondCommand() {
         inputString = new Scanner(System.in);
         runProgram = true;
+        history.addDate(drinkingBalance1);
+        history.addDate(drinkingBalance2);
+        history.addDate(drinkingBalance3);
+        history.addDate(balance);
     }
 
     // EFFECTS: parses user input until user quits
@@ -114,6 +136,10 @@ public class RespondCommand {
     // EFFECTS: display days have drink history
     public void displayHistory() {
         System.out.println("you have drink " + history.numDatesRecorded() + " days");
+        System.out.println("History: ");
+        for (int i = 0; i < history.numDatesRecorded(); i++) {
+            System.out.println(history.getDrinkHistory().get(i).combineDateBalance());
+        }
 
     }
 

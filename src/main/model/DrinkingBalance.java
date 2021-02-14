@@ -28,6 +28,19 @@ public class DrinkingBalance {
         this.year = year;
     }
 
+    // REQUIRES: input day and month must be a proper date, not 02-31-2020, not future date like 01-01-2100
+    //           year must be four digit, day and month can only be one or two digit
+    //           initialBalance >= 0, one more input
+    // MODIFIES: this
+    // EFFECTS:  make the day, month, year input into this.day, this.month, this.year
+    //           set balance to it's initial value, which is 0
+    public DrinkingBalance(int day, int month, int year, int balance) {
+        this.balance = balance;
+        this.day = day;
+        this.month = month;
+        this.year = year;
+    }
+
 
     // REQUIRES: amount > 0
     // MODIFIES: this
