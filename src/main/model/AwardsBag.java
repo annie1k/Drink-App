@@ -9,6 +9,7 @@ import java.util.Random;
 
 public class AwardsBag {
 
+
     // changing properties of awards bag
     // list of medal images in the bag
     private List<JLabel> medals;
@@ -30,8 +31,16 @@ public class AwardsBag {
         this.medals.add(randMedal);
     }
 
+    // EFFECTS: remove the last medal
+    public void subLastMedal() {
+        int index = this.medals.size() - 1;
+        medals.remove(index);
+    }
+
     // EFFECTS: returns number of medals in bag
     public int numMedalsInBag() {
         return this.medals.size();
     }
+
+
 }
