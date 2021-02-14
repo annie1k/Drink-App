@@ -97,8 +97,7 @@ public class DrinkingBalanceTest {
     @Test
     public void testCombineDateBalanceZero() {
         String date = balance.getDate();
-        assertEquals("01-01-2021" +" corresponding balance: " + 0,
-                date +" corresponding balance: "+ balance.getBalance());
+        assertEquals(date +" corresponding balance: "+ balance.getBalance(),balance.combineDateBalance());
 
     }
 
@@ -106,16 +105,14 @@ public class DrinkingBalanceTest {
     public void testCombineDateBalanceChange() {
         balance.addBalance(CHANGE_VALUE);
         String date = balance.getDate();
-        assertEquals("01-01-2021" +" corresponding balance: "+ CHANGE_VALUE,
-                date +" corresponding balance: "+ balance.getBalance());
+        assertEquals(date +" corresponding balance: "+ balance.getBalance(),balance.combineDateBalance());
 
     }
     @Test
     public void testCombineDateBalanceChangeMultiple() {
         balance.addBalance(CHANGE_VALUE*5);
         String date = balance.getDate();
-        assertEquals("01-01-2021" +" corresponding balance: "+ CHANGE_VALUE * 5,
-                date +" corresponding balance: "+ balance.getBalance());
+        assertEquals(date +" corresponding balance: "+ balance.getBalance(),balance.combineDateBalance());
 
     }
 }
