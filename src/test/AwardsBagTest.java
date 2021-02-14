@@ -33,7 +33,49 @@ public class AwardsBagTest {
     }
 
     @Test
-    public void testNumMedalsInBag() {
-        //!!!
+    public void testNumMedalsInBagZero() {
+       assertEquals(0,emptyBag.numMedalsInBag());
+    }
+
+    @Test
+    public void testNumMedalsInBagOne() {
+        emptyBag.addRandMedal();
+        assertEquals(1,emptyBag.numMedalsInBag());
+    }
+
+    @Test
+    public void testNumMedalsInBagMultiple() {
+        emptyBag.addRandMedal();
+        emptyBag.addRandMedal();
+        emptyBag.addRandMedal();
+        emptyBag.addRandMedal();
+        assertEquals(4,emptyBag.numMedalsInBag());
+    }
+
+    @Test
+    public void testNumMedalsInBagMultipleMinus() {
+        emptyBag.addRandMedal();
+        emptyBag.addRandMedal();
+        emptyBag.addRandMedal();
+        emptyBag.addRandMedal();
+        emptyBag.subLastMedal();
+        assertEquals(3,emptyBag.numMedalsInBag());
+    }
+
+    @Test
+    public void subLastMedalOne() {
+        emptyBag.addRandMedal();
+        emptyBag.subLastMedal();
+        assertEquals(0,emptyBag.numMedalsInBag());
+    }
+
+    @Test
+    public void subLastMedalMultiple() {
+        emptyBag.addRandMedal();
+        emptyBag.addRandMedal();
+        emptyBag.addRandMedal();
+        emptyBag.subLastMedal();
+        emptyBag.subLastMedal();
+        assertEquals(1,emptyBag.numMedalsInBag());
     }
 }
