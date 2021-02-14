@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 // Unit tests for TodayDrinkingBalanceTest class
 public class DrinkingBalanceTest {
     private DrinkingBalance balance;
+    private DrinkingBalance balance2;
     private TodayDrinkingGoal goal;
     private int CHANGE_VALUE = 1;
     private int INITIAL_VALUE = 500;
@@ -23,6 +24,15 @@ public class DrinkingBalanceTest {
         balance.addBalance(CHANGE_VALUE);
         String actual = balance.getDate();
         assertEquals(CHANGE_VALUE, balance.getBalance());
+        assertEquals("01-01-2021", actual);
+    }
+
+    @Test
+    public void testDrinkingBalance() {
+        balance2 = new DrinkingBalance(1,1,2021,500);
+        balance2.addBalance(CHANGE_VALUE);
+        String actual = balance2.getDate();
+        assertEquals(CHANGE_VALUE + 500, balance2.getBalance());
         assertEquals("01-01-2021", actual);
     }
 

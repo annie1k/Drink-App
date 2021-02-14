@@ -34,4 +34,13 @@ public class DrinkHistoryTest {
         emptyHistory.addDate(balance);
         assertEquals(3, emptyHistory.numDatesRecorded());
     }
+
+    @Test
+    public void testGetDrinkHistory() {
+        DrinkHistory history = new DrinkHistory();
+        history.addDate(balance);
+        assertEquals(1,history.getDrinkHistory().size());
+    }
+
+
 }
