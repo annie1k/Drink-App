@@ -18,8 +18,8 @@ public class DrinkHistory {
 
     // MODIFIES: this
     // EFFECTS: adds a new drink balance date to the drinking history dates
-    public void addDate(DrinkingBalance drinkHistory) {
-        this.drinkHistory.add(drinkHistory);
+    public void addDate(DrinkingBalance newDrinkBalance) {
+        this.drinkHistory.add(newDrinkBalance);
     }
 
     // EFFECTS: returns number of dates in history recorded

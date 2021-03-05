@@ -37,6 +37,9 @@ experience.
 
 
 **User Stories**:
+- As a user, I want to be able to save my drinking history to file.
+
+- As a user, I want to be able to be able to load my history that tracks the list of drinking history from file.
 
 - As a user, I want to be able to get a suggested daily drinking.
   
