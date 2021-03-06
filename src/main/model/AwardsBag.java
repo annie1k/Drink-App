@@ -2,12 +2,16 @@
 
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class AwardsBag {
+public class AwardsBag implements Writable {
 
 
     // changing properties of awards bag
@@ -26,7 +30,7 @@ public class AwardsBag {
     // EFFECTS: adds a new medal to the collection of medal to awards bag
     public void addRandMedal() {
         Random rand = new Random();
-        int randMedalNum = rand.nextInt(11);
+        int randMedalNum = rand.nextInt(10) + 1;
         JLabel randMedal = new JLabel(new ImageIcon(randMedalNum + ".png"));
         this.medals.add(randMedal);
     }
@@ -40,6 +44,26 @@ public class AwardsBag {
     // EFFECTS: returns number of medals in bag
     public int numMedalsInBag() {
         return this.medals.size();
+    }
+
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("total number", numMedalsInBag()); // is this okay???
+        json.put("medals", medalsToJson());
+        return json;
+    }
+
+    // EFFECTS: returns things in this awards bag as a JSON array
+    private JSONArray medalsToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (JLabel a : medals) {
+            jsonArray.put(a.toJson());
+        }
+
+        return jsonArray;
     }
 
 

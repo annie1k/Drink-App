@@ -2,10 +2,15 @@ package model;
 
 // This is the water drinking history which collects all the drink date with balance
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
+import java.nio.file.Watchable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DrinkHistory {
+public class DrinkHistory implements Writable {
     // changing properties of DrinkingHistory
     // list of date that drinks with drinking amount
     private List<DrinkingBalance> drinkHistory;
@@ -32,4 +37,35 @@ public class DrinkHistory {
         return this.drinkHistory;
     }
 
+
+
+    // EFFECT: add and return the drinking balance if it is not in the history, if exist, just return the original one
+    public DrinkingBalance findBalance(String date) {
+        for (DrinkingBalance balance: drinkHistory) {
+            String historyDate = balance.getDate();
+
+            if (date.equals(historyDate)) {
+                return balance;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("balances", balancesToJson());
+        return json;
+    }
+
+    // EFFECTS: returns balances in this history as a JSON array
+    private JSONArray balancesToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (DrinkingBalance b : drinkHistory) {
+            jsonArray.put(b.toJson());
+        }
+
+        return jsonArray;
+    }
 }

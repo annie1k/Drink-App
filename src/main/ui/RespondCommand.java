@@ -33,33 +33,14 @@ public class RespondCommand {
     private AwardsBag bag = new AwardsBag();
     private DrinkHistory history = new DrinkHistory();
     private TodayDrinkingGoal goal = new TodayDrinkingGoal(500);
-    private DrinkingBalance balance = new DrinkingBalance(day,month,year);
+    private DrinkingBalance balance = new DrinkingBalance(day, month, year);
 
-    int balance1 = 100;
-    int balance2 = 200;
-    int balance3 = 300;
-    int day1 = day--;
-    int day2 = day1--;
-    int day3 = day2--;
-    int month1 = month--;
-    int month2 = month1--;
-    int month3 = month2--;
-    int year1 = 2000;
-    int year2 = 2001;
-    int year3 = 2002;
-
-    DrinkingBalance drinkingBalance1 = new DrinkingBalance(day1,month1,year1,balance1);
-    DrinkingBalance drinkingBalance2 = new DrinkingBalance(day2,month2,year2,balance2);
-    DrinkingBalance drinkingBalance3 = new DrinkingBalance(day3,month3,year3,balance3);
 
     // EFFECTS: start the application
     public RespondCommand() {
         inputString = new Scanner(System.in);
         runProgram = true;
-        history.addDate(drinkingBalance1);
-        history.addDate(drinkingBalance2);
-        history.addDate(drinkingBalance3);
-        history.addDate(balance);
+        //history.addDate(balance);
     }
 
     // EFFECTS: parses user input until user quits
@@ -102,8 +83,6 @@ public class RespondCommand {
             System.out.println("Sorry, I don't understand. Please try again.");
         }
     }
-
-
 
 
     // EFFECTS: prints instructions to use Respond Command
@@ -153,8 +132,37 @@ public class RespondCommand {
         System.out.println("Today's goal is: " + goal.getGoal());
     }
 
+
+
+    // MODIFIES: this
+    // EFFECTS: make single digit day and month into two digit
+    public String cleanFormat(int i) {
+        if (i < 10) {
+            return "" + "0" + i;
+        } else {
+            return "" + i;
+        }
+    }
+
+
+    // Must enter the proper format of date
     // EFFECTS: add balance
     public void addBalance() {
+        //ask the date
+        System.out.println("Please enter the day, for example, 1");
+        int inputDay = inputString.nextInt();
+        inputString.nextLine();
+        System.out.println("Please enter the month, for example, 1");
+        int inputMonth = inputString.nextInt();
+        inputString.nextLine();
+        System.out.println("Please enter the year, for example, 2000");
+        int inputYear = inputString.nextInt();
+        inputString.nextLine();
+
+        String date = cleanFormat(inputDay) + "-" + cleanFormat(inputMonth) + "-" + cleanFormat(inputYear);
+
+        findHistory2(inputDay, inputMonth, inputYear, date);
+
         System.out.println("Please type the number you wanna change");
 
         inputInt = new Scanner(System.in);
@@ -165,11 +173,36 @@ public class RespondCommand {
         if (balance.isAchieved() && (bag.numMedalsInBag() == 0)) {
             bag.addRandMedal();
             System.out.println("current # medals: " + bag.numMedalsInBag());
+            inputString.nextLine();
         }
     }
 
+    private void findHistory2(int inputDay, int inputMonth, int inputYear, String date) {
+        if (history.findBalance(date) == null) {
+            balance = new DrinkingBalance(inputDay, inputMonth, inputYear);
+            history.addDate(balance);
+        } else {
+            balance = history.findBalance(date);
+        }
+    }
+
+
     // EFFECTS: subtract balance
     public void subBalance() {
+        System.out.println("Please enter the day, for example, 1");
+        int inputDay = inputString.nextInt();
+        inputString.nextLine();
+        System.out.println("Please enter the month, for example, 1");
+        int inputMonth = inputString.nextInt();
+        inputString.nextLine();
+        System.out.println("Please enter the year, for example, 2000");
+        int inputYear = inputString.nextInt();
+        inputString.nextLine();
+
+        String date = cleanFormat(inputDay) + "-" + cleanFormat(inputMonth) + "-" + cleanFormat(inputYear);
+
+        findHistory2(inputDay, inputMonth, inputYear, date);
+
         System.out.println("Please type the number you wanna change");
 
         inputInt = new Scanner(System.in);
@@ -180,24 +213,73 @@ public class RespondCommand {
         if ((!balance.isAchieved()) && (bag.numMedalsInBag() == 1)) {
             bag.subLastMedal();
             System.out.println("current # medals: " + bag.numMedalsInBag());
+            inputString.nextLine();
         }
     }
 
 
     // EFFECTS: add goal
     public void addGoal() {
+
+        System.out.println("Please enter the day, for example, 1");
+        int inputDay = inputString.nextInt();
+        inputString.nextLine();
+        System.out.println("Please enter the month, for example, 1");
+        int inputMonth = inputString.nextInt();
+        inputString.nextLine();
+        System.out.println("Please enter the year, for example, 2000");
+        int inputYear = inputString.nextInt();
+        inputString.nextLine();
+
+        String date = cleanFormat(inputDay) + "-" + cleanFormat(inputMonth) + "-" + cleanFormat(inputYear);
+
+        findHistory(inputDay, inputMonth, inputYear, date);
+
+        goal = balance.getGoal();
+
+
+
         System.out.println("Please type the number you wanna change");
 
         inputInt = new Scanner(System.in);
         int goal1 = inputInt.nextInt();
-        goal.addGoal(goal1);
+
+        if (goal == null) {
+            balance.addGoal(goal1);
+            goal = balance.getGoal();
+        } else {
+            goal.addGoal(goal1);
+        }
+
 
         System.out.println("current goal: " + goal.getGoal());
+
+        if ((!balance.isAchieved()) && (bag.numMedalsInBag() == 1)) {
+            bag.subLastMedal();
+            System.out.println("current # medals: " + bag.numMedalsInBag());
+            inputString.nextLine();
+        }
 
     }
 
     // EFFECTS: subtract goal
     public void subGoal() {
+        System.out.println("Please enter the day, for example, 1");
+        int inputDay = inputString.nextInt();
+        inputString.nextLine();
+        System.out.println("Please enter the month, for example, 1");
+        int inputMonth = inputString.nextInt();
+        inputString.nextLine();
+        System.out.println("Please enter the year, for example, 2000");
+        int inputYear = inputString.nextInt();
+        inputString.nextLine();
+
+        String date = cleanFormat(inputDay) + "-" + cleanFormat(inputMonth) + "-" + cleanFormat(inputYear);
+
+        findHistory(inputDay, inputMonth, inputYear, date);
+
+        goal = balance.getGoal();
+
         System.out.println("Please type the number you wanna change");
 
         inputInt = new Scanner(System.in);
@@ -205,7 +287,18 @@ public class RespondCommand {
         goal.subGoal(goal2);
 
         System.out.println("current goal: " + goal.getGoal());
+        inputString.nextLine();
 
+    }
+
+    private void findHistory(int inputDay, int inputMonth, int inputYear, String date) {
+        if (history.findBalance(date) == null) {
+            balance = new DrinkingBalance(inputDay, inputMonth, inputYear);
+            balance.addGoal(0);
+            history.addDate(balance);
+        } else {
+            balance = history.findBalance(date);
+        }
     }
 
 

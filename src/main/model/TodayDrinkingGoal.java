@@ -1,7 +1,10 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // Represent the water drinking goal's amount in a day
-public class TodayDrinkingGoal {
+public class TodayDrinkingGoal implements Writable {
 
     // changing properties of today's drinking amount
     // goal is set for today's water drink goal
@@ -35,4 +38,10 @@ public class TodayDrinkingGoal {
         return goal;
     }
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject goal = new JSONObject();
+        goal.put("goal",this.goal);
+        return goal;
+    }
 }

@@ -1,8 +1,11 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // Represent the water drinking balance in a day
 // plus: Representing the the drink date, will be used for history tracking, in drinking history class
-public class DrinkingBalance {
+public class DrinkingBalance implements Writable {
 
     // changing properties of a day's drinking amount
     // balance is how many ml have drank so far
@@ -13,6 +16,7 @@ public class DrinkingBalance {
     private int year;
     private int month;
     private int day;
+    private TodayDrinkingGoal goal = new TodayDrinkingGoal(500);
 
 
     // REQUIRES: input day and month must be a proper date, not 02-31-2020, not future date like 01-01-2100
@@ -41,6 +45,16 @@ public class DrinkingBalance {
         this.year = year;
     }
 
+    //
+    public void addGoal(int goal) {
+        this.goal = new TodayDrinkingGoal(goal);
+    }
+
+    //
+    public TodayDrinkingGoal getGoal() {
+        return goal;
+    }
+
 
     // REQUIRES: amount > 0
     // MODIFIES: this
@@ -66,7 +80,6 @@ public class DrinkingBalance {
     //              -if achieve, return true
     //              -if not achieve yet, return false
     public boolean isAchieved() {
-        TodayDrinkingGoal goal = new TodayDrinkingGoal(500);
         if (balance >= goal.getGoal()) {
             return true;
         } else {
@@ -98,6 +111,19 @@ public class DrinkingBalance {
     // EFFECTS: combine the date and the current balance
     public String combineDateBalance() {
         return getDate() + " corresponding balance: " + getBalance();
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        JSONObject jsonDate = new JSONObject();
+        jsonDate.put("day",day);
+        jsonDate.put("month",month);
+        jsonDate.put("year",year);
+        json.put("date",jsonDate);
+        json.put("balance", getBalance());
+        json.put("goal",goal.toJson());
+        return json;
     }
 
 
