@@ -9,12 +9,14 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Stream;
 
 import org.json.*;
 
 //refer to JsonSerializationDemo
-// Represents a reader that reads workroom from JSON data stored in file
+// Represents a reader that reads drink history and awards bag from JSON data stored in file
 public class JsonReader {
     private String source;
 
@@ -52,7 +54,7 @@ public class JsonReader {
     }
 
     // MODIFIES: dh
-    // EFFECTS: parses balances from JSON object and adds them to workroom
+    // EFFECTS: parses balances from JSON object and adds them to history
     private void addBalances(DrinkHistory dh, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("balances");
         for (Object json : jsonArray) {
@@ -74,45 +76,59 @@ public class JsonReader {
         JSONObject jsonGoal = jsonObject.getJSONObject("goal");
         int goal = jsonGoal.getInt("goal");
 
+        JSONObject jsonBag = jsonObject.getJSONObject("bag");
+        JSONArray medals = jsonBag.getJSONArray("medal");
+        int total = jsonBag.getInt("total number");
+
 
         DrinkingBalance drinkingBalance = new DrinkingBalance(day, month, year);
         drinkingBalance.addBalance(balance);
         drinkingBalance.addGoal(goal);
+
+        ArrayList<String> listdata = new ArrayList<String>();
+        if (medals != null) {
+            for (int i = 0; i < medals.length(); i++) {
+                listdata.add((String) medals.get(i));
+            }
+        }
+
+        drinkingBalance.addMedal(listdata);
         dh.addDate(drinkingBalance);
     }
 
-    // EFFECTS: reads drink history from file and returns it;
-    // throws IOException if an error occurs reading data from file
-    public AwardsBag readAwards() throws IOException {
-        String jsonData = readFile(source);
-        JSONObject jsonObject = new JSONObject(jsonData);
-        return parseAwardsBag(jsonObject);
-    }
 
 
 
-
-    // EFFECTS: parses medal bag from JSON object and returns it
-    private DrinkHistory parseAwardsBag(JSONObject jsonObject) {
-        AwardsBag ab = new AwardsBag();
-        addMedals(ab, jsonObject);
-        return ab;
-    }
-
-    // MODIFIES: ab
-    // EFFECTS: parses medals from JSON object and adds them to award bag
-    private void addMedals(AwardsBag ab, JSONObject jsonObject) {
-        JSONArray jsonArray = jsonObject.getJSONArray("balances");
-        for (Object json : jsonArray) {
-            JSONObject nextMedal = (JSONObject) json;
-            addMedal(ab, nextMedal);
-        }
-    }
-
-    // MODIFIES: ab
-    // EFFECTS: parses medal from JSON object and adds it to award bag
-    private void addMedal(AwardsBag ab, JSONObject jsonObject) {
-        ab.addRandMedal();
-    }
+//    // EFFECTS: reads awards bag from file and returns it;
+//    // throws IOException if an error occurs reading data from file
+//    public AwardsBag readAwards() throws IOException {
+//        String jsonData = readFile(source);
+//        JSONObject jsonObject = new JSONObject(jsonData);
+//        return parseAwardsBag(jsonObject);
+//    }
+//
+//
+//    // EFFECTS: parses medal bag from JSON object and returns it
+//    private AwardsBag parseAwardsBag(JSONObject jsonObject) {
+//        AwardsBag ab = new AwardsBag();
+//        addMedals(ab, jsonObject);
+//        return ab;
+//    }
+//
+//    // MODIFIES: ab
+//    // EFFECTS: parses medals from JSON object and adds them to award bag
+//    private void addMedals(AwardsBag ab, JSONObject jsonObject) {
+//        JSONArray jsonArray = jsonObject.getJSONArray("Awards");
+//        for (Object json : jsonArray) {
+//            JSONObject nextMedal = (JSONObject) json;
+//            addMedal(ab, nextMedal);
+//        }
+//    }
+//
+//    // MODIFIES: ab
+//    // EFFECTS: parses medal from JSON object and adds it to award bag
+//    private void addMedal(AwardsBag ab, JSONObject jsonObject) {
+//        ab.addRandMedal();
+//    }
 
 }

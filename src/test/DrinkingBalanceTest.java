@@ -43,6 +43,12 @@ public class DrinkingBalanceTest {
     }
 
     @Test
+    public void testAddGoal() {
+        goal.addGoal(CHANGE_VALUE);
+        assertEquals(CHANGE_VALUE + INITIAL_VALUE, goal.getGoal());
+    }
+
+    @Test
     public void testSubBalanceSmall() {
         balance.addBalance(INITIAL_VALUE);
         balance.subBalance(CHANGE_VALUE);
@@ -80,7 +86,8 @@ public class DrinkingBalanceTest {
         balance.addBalance(INITIAL_VALUE + CHANGE_VALUE);
         assertTrue(balance.isAchieved());
     }
-        @Test
+
+    @Test
     public void testGetData() {
         String actual = balance.getDate();
         assertEquals("01-01-2021",actual);

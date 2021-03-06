@@ -38,6 +38,7 @@ public class TodayDrinkingGoal implements Writable {
         return goal;
     }
 
+    //EFFECTS: return json
     @Override
     public JSONObject toJson() {
         JSONObject goal = new JSONObject();

@@ -51,6 +51,7 @@ public class DrinkHistory implements Writable {
         return null;
     }
 
+    //EFFECTS: return json
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -67,5 +68,15 @@ public class DrinkHistory implements Writable {
         }
 
         return jsonArray;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (DrinkingBalance db: drinkHistory) {
+            sb.append(db.toString());
+            sb.append("\n");
+        }
+        return sb.toString();
     }
 }

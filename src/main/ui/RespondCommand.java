@@ -4,7 +4,11 @@ import model.AwardsBag;
 import model.DrinkHistory;
 import model.DrinkingBalance;
 import model.TodayDrinkingGoal;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.Scanner;
 
@@ -17,6 +21,12 @@ public class RespondCommand {
     int year = 2020 + Calendar.YEAR;
 
 
+    //jSon
+    private static final String JSON_STORE = "./data/drinkApp.json";
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
+
+
     private static final String MEDAL_COMMAND = "medal bag";
     private static final String HISTORY_COMMAND = "history";
     private static final String TODAY_BALANCE_ADD_COMMAND = "add balance";
@@ -25,6 +35,8 @@ public class RespondCommand {
     private static final String TODAY_GOAL_COMMAND = "goal";
     private static final String TODAY_GOAL_ADD_COMMAND = "add goal";
     private static final String TODAY_GOAL_SUB_COMMAND = "sub goal";
+    private static final String SAVE_COMMAND = "save";
+    private static final String LOAD_COMMAND = "load";
     private static final String QUIT_COMMAND = "quit";
 
     private Scanner inputString;
@@ -39,8 +51,11 @@ public class RespondCommand {
     // EFFECTS: start the application
     public RespondCommand() {
         inputString = new Scanner(System.in);
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         runProgram = true;
         //history.addDate(balance);
+
     }
 
     // EFFECTS: parses user input until user quits
@@ -65,7 +80,22 @@ public class RespondCommand {
             displayAllMedals();
         } else if (str.equals(HISTORY_COMMAND)) {
             displayHistory();
-        } else if (str.equals(TODAY_BALANCE_COMMAND)) {
+        } else if (str.equals(SAVE_COMMAND)) {
+            saveHistoryAndAwards();
+        } else if (str.equals(LOAD_COMMAND)) {
+            loadHistoryAndAwards();
+        } else if (str.equals(QUIT_COMMAND)) {
+            runProgram = false;
+        } else {
+            respondInputAddition(str);
+        }
+    }
+
+    // Helper function of respondInput
+    // REQUIRE: string length must >0, not empty
+    // EFFECTS: give respond depending on input command str
+    private void respondInputAddition(String str) {
+        if (str.equals(TODAY_BALANCE_COMMAND)) {
             displayBalance();
         } else if (str.equals(TODAY_BALANCE_ADD_COMMAND)) {
             addBalance();
@@ -77,8 +107,6 @@ public class RespondCommand {
             addGoal();
         } else if (str.equals(TODAY_GOAL_SUB_COMMAND)) {
             subGoal();
-        } else if (str.equals(QUIT_COMMAND)) {
-            runProgram = false;
         } else {
             System.out.println("Sorry, I don't understand. Please try again.");
         }
@@ -95,6 +123,8 @@ public class RespondCommand {
         System.out.println("Enter '" + TODAY_GOAL_COMMAND + "' to check today's goal");
         System.out.println("Enter '" + TODAY_GOAL_ADD_COMMAND + "' to add ml to today's goal");
         System.out.println("Enter '" + TODAY_GOAL_SUB_COMMAND + "' to subtract ml to today's goal");
+        System.out.println("Enter '" + SAVE_COMMAND + "' to save history and awards");
+        System.out.println("Enter '" + LOAD_COMMAND + "' to load history and awards bag");
         System.out.println("Enter '" + QUIT_COMMAND + "' to quit the application");
     }
 
@@ -109,7 +139,27 @@ public class RespondCommand {
 
     // EFFECTS: display all medals earned
     public void displayAllMedals() {
+        System.out.println("Please enter the day, for example, 1");
+        int inputDay = inputString.nextInt();
+        inputString.nextLine();
+        System.out.println("Please enter the month, for example, 1");
+        int inputMonth = inputString.nextInt();
+        inputString.nextLine();
+        System.out.println("Please enter the year, for example, 2000");
+        int inputYear = inputString.nextInt();
+        inputString.nextLine();
+
+        String date = cleanFormat(inputDay) + "-" + cleanFormat(inputMonth) + "-" + cleanFormat(inputYear);
+
+        findHistory(inputDay, inputMonth, inputYear, date);
+
+        bag = balance.getBag();
+
         System.out.println("you have " + bag.numMedalsInBag() + " medals");
+        System.out.println("Awards: ");
+        for (int i = 0; i < bag.numMedalsInBag(); i++) {
+            System.out.println(bag.getBag());
+        }
     }
 
     // EFFECTS: display days have drink history
@@ -173,10 +223,14 @@ public class RespondCommand {
         if (balance.isAchieved() && (bag.numMedalsInBag() == 0)) {
             bag.addRandMedal();
             System.out.println("current # medals: " + bag.numMedalsInBag());
-            inputString.nextLine();
+            //inputString.nextLine();
+            System.out.println(bag.numMedalsInBag());
+            balance.addMedal(bag.getBag());
         }
     }
 
+
+    //EFFECTS: find if exist a day that have use history, exist then set balance to this.balance, create new otherwise
     private void findHistory2(int inputDay, int inputMonth, int inputYear, String date) {
         if (history.findBalance(date) == null) {
             balance = new DrinkingBalance(inputDay, inputMonth, inputYear);
@@ -213,7 +267,8 @@ public class RespondCommand {
         if ((!balance.isAchieved()) && (bag.numMedalsInBag() == 1)) {
             bag.subLastMedal();
             System.out.println("current # medals: " + bag.numMedalsInBag());
-            inputString.nextLine();
+            //inputString.nextLine();
+            balance.addMedal(bag.getBag());
         }
     }
 
@@ -244,12 +299,7 @@ public class RespondCommand {
         inputInt = new Scanner(System.in);
         int goal1 = inputInt.nextInt();
 
-        if (goal == null) {
-            balance.addGoal(goal1);
-            goal = balance.getGoal();
-        } else {
-            goal.addGoal(goal1);
-        }
+        historyForGoal(goal1);
 
 
         System.out.println("current goal: " + goal.getGoal());
@@ -257,9 +307,20 @@ public class RespondCommand {
         if ((!balance.isAchieved()) && (bag.numMedalsInBag() == 1)) {
             bag.subLastMedal();
             System.out.println("current # medals: " + bag.numMedalsInBag());
-            inputString.nextLine();
+            //inputString.nextLine();
+            balance.addMedal(bag.getBag());
         }
 
+    }
+
+    //EFFECTS: find if exist a day that have use history, exist then set balance to this.goal, create new otherwise
+    private void historyForGoal(int goal1) {
+        if (goal == null) {
+            balance.addGoal(goal1);
+            goal = balance.getGoal();
+        } else {
+            goal.addGoal(goal1);
+        }
     }
 
     // EFFECTS: subtract goal
@@ -291,6 +352,7 @@ public class RespondCommand {
 
     }
 
+    //EFFECTS: find if exist a day that have use history, exist then set balance to this.balance, create new otherwise
     private void findHistory(int inputDay, int inputMonth, int inputYear, String date) {
         if (history.findBalance(date) == null) {
             balance = new DrinkingBalance(inputDay, inputMonth, inputYear);
@@ -300,6 +362,33 @@ public class RespondCommand {
             balance = history.findBalance(date);
         }
     }
+
+    // EFFECTS: saves the history and awards to file
+    private void saveHistoryAndAwards() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(history);
+            System.out.println(history.toString());
+            //jsonWriter.write(bag);
+            jsonWriter.close();
+            System.out.println("Saved history and awards" + " to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads history and awards from file
+    private void loadHistoryAndAwards() {
+        try {
+            history = jsonReader.readHistory();
+            //bag = jsonReader.readAwards();
+            System.out.println("Loaded history and awards bag" + " from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
+    }
+
 
 
     //EFFECTS: stops receiving user input

@@ -1,7 +1,11 @@
 package model;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 // Represent the water drinking balance in a day
 // plus: Representing the the drink date, will be used for history tracking, in drinking history class
@@ -17,6 +21,7 @@ public class DrinkingBalance implements Writable {
     private int month;
     private int day;
     private TodayDrinkingGoal goal = new TodayDrinkingGoal(500);
+    private AwardsBag bag = new AwardsBag();
 
 
     // REQUIRES: input day and month must be a proper date, not 02-31-2020, not future date like 01-01-2100
@@ -45,14 +50,32 @@ public class DrinkingBalance implements Writable {
         this.year = year;
     }
 
-    //
+    // REQUIRES: amount > 0
+    // MODIFIES: this
+    // EFFECTS: adds amount ml to goal
     public void addGoal(int goal) {
         this.goal = new TodayDrinkingGoal(goal);
     }
 
-    //
+    // REQUIRES: amount > 0
+    // MODIFIES: this
+    // EFFECTS: adds list of medals
+    public void addMedal(List<String> ss) {
+        this.bag = new AwardsBag();
+        for (String s: ss) {
+            bag.addMedal(s);
+        }
+
+    }
+
+    // EFFECTS: return current goal in ml
     public TodayDrinkingGoal getGoal() {
         return goal;
+    }
+
+    // EFFECTS: return bag
+    public AwardsBag getBag() {
+        return bag;
     }
 
 
@@ -88,7 +111,6 @@ public class DrinkingBalance implements Writable {
     }
 
 
-
     // MODIFIES: this
     // EFFECTS: make date into clean format and return the date with "-" symbol
     public String getDate() {
@@ -113,19 +135,26 @@ public class DrinkingBalance implements Writable {
         return getDate() + " corresponding balance: " + getBalance();
     }
 
+    //EFFECTS: return json
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         JSONObject jsonDate = new JSONObject();
-        jsonDate.put("day",day);
-        jsonDate.put("month",month);
-        jsonDate.put("year",year);
-        json.put("date",jsonDate);
+        jsonDate.put("day", day);
+        jsonDate.put("month", month);
+        jsonDate.put("year", year);
+        json.put("date", jsonDate);
         json.put("balance", getBalance());
-        json.put("goal",goal.toJson());
+        json.put("goal", goal.toJson());
+        json.put("bag", bag.toJson());
         return json;
     }
 
+    @Override
+    public String toString() {
+        return String.format("day: %d, month: %d, year: %d, balance: %d, medals: %d", day, month,
+                year, balance, bag.numMedalsInBag());
+    }
 
 
 }

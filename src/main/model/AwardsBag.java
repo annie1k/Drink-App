@@ -16,7 +16,7 @@ public class AwardsBag implements Writable {
 
     // changing properties of awards bag
     // list of medal images in the bag
-    private List<JLabel> medals;
+    private final List<String> medals;
 
 
     // EFFECTS: constructs an empty collection of medals that earned
@@ -31,8 +31,15 @@ public class AwardsBag implements Writable {
     public void addRandMedal() {
         Random rand = new Random();
         int randMedalNum = rand.nextInt(10) + 1;
-        JLabel randMedal = new JLabel(new ImageIcon(randMedalNum + ".png"));
+        String randMedal = randMedalNum + ".png"; // Is this the problem?
         this.medals.add(randMedal);
+    }
+
+    // MODIFIES: this
+    // EFFECTS: adds a new medal to the collection of medal to awards bag
+    public void addMedal(String m) {
+        String medal = m;
+        this.medals.add(medal);
     }
 
     // EFFECTS: remove the last medal
@@ -46,7 +53,13 @@ public class AwardsBag implements Writable {
         return this.medals.size();
     }
 
+    // EFFECT: return the bag
+    public List<String> getBag() {
+        return this.medals;
+    }
 
+
+    //EFFECTS: return json
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -59,8 +72,8 @@ public class AwardsBag implements Writable {
     private JSONArray medalsToJson() {
         JSONArray jsonArray = new JSONArray();
 
-        for (JLabel a : medals) {
-            jsonArray.put(a.toJson());
+        for (String m : medals) {
+            jsonArray.put(m); // can this work?
         }
 
         return jsonArray;

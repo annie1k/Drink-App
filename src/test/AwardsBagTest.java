@@ -1,4 +1,5 @@
 import model.AwardsBag;
+import model.DrinkHistory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -16,6 +17,13 @@ public class AwardsBagTest {
     @Test
     public void testAwardsBag() {
         assertEquals(0, emptyBag.numMedalsInBag());
+    }
+
+    @Test
+    public void testGetDrinkHistory() {
+        AwardsBag bag = new AwardsBag();
+        bag.addRandMedal();
+        assertEquals(1,bag.getBag().size());
     }
 
     @Test

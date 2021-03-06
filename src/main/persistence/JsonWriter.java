@@ -6,7 +6,7 @@ import org.json.JSONObject;
 import java.io.*;
 
 //refer to JsonSerializationDemo
-// Represents a writer that writes JSON representation of workroom to file
+// Represents a writer that writes JSON representation of history and awards to file
 
 public class JsonWriter {
     private static final int TAB = 4;
@@ -26,7 +26,7 @@ public class JsonWriter {
     }
 
     // MODIFIES: this
-    // EFFECTS: writes JSON representation of workroom to file
+    // EFFECTS: writes JSON representation of history and awards to file
     public void write(Writable dh) {
         JSONObject json = dh.toJson();
         saveToFile(json.toString(TAB));
