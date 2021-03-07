@@ -75,7 +75,7 @@ public class DrinkHistory implements Writable {
     }
 
     // EFFECTS: returns balances in this history as a JSON array
-    private JSONArray balancesToJson() {
+    public JSONArray balancesToJson() {
         JSONArray jsonArray = new JSONArray();
 
         for (DrinkingBalance b : drinkHistory) {

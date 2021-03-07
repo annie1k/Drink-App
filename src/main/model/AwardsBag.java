@@ -92,7 +92,7 @@ public class AwardsBag implements Writable {
 
 
     // EFFECTS: returns things in this awards bag as a JSON array
-    private JSONArray medalsToJson() {
+    public JSONArray medalsToJson() {
         JSONArray jsonArray = new JSONArray();
 
         for (Medal m : medals) {
