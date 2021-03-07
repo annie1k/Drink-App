@@ -157,12 +157,12 @@ public class DrinkingBalanceTest {
 
     @Test
     public void testToString() {
-
+        assertEquals("day: 1, month: 1, year: 2021, balance: 0",balance.toString());
     }
 
     @Test
     public void testGetGoal() {
-
+        assertEquals(500,balance.getGoal().getGoal());
     }
 
 
