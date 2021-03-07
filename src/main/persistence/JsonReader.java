@@ -1,9 +1,6 @@
 package persistence;
 
-import model.AwardsBag;
-import model.DrinkHistory;
-import model.DrinkingBalance;
-import model.TodayDrinkingGoal;
+import model.*;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -65,7 +62,13 @@ public class JsonReader {
         AwardsBag ab = new AwardsBag();
 
         for (int i = 0; i < medals.length(); i++) {
-            String medal = (String) medals.get(i);
+            JSONObject jo = (JSONObject) medals.get(i);
+            Medal medal = new Medal();
+            medal.setDay(jo.getInt("day"));
+            medal.setMonth(jo.getInt("month"));
+            medal.setYear(jo.getInt("year"));
+            medal.setImg(jo.getString("img"));
+            //medal = (Medal) medals.get(i);
             ab.addMedal(medal);
         }
         dh.setAwardsBag(ab);

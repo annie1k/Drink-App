@@ -63,6 +63,8 @@ public class DrinkHistory implements Writable {
         return null;
     }
 
+
+
     //EFFECTS: return json
     @Override
     public JSONObject toJson() {

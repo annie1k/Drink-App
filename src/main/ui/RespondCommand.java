@@ -1,9 +1,6 @@
 package ui;
 
-import model.AwardsBag;
-import model.DrinkHistory;
-import model.DrinkingBalance;
-import model.TodayDrinkingGoal;
+import model.*;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
@@ -11,6 +8,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.Scanner;
+
+import static model.AwardsBag.findMedal;
 
 public class RespondCommand {
 
@@ -42,7 +41,7 @@ public class RespondCommand {
     private Scanner inputString;
     private Scanner inputInt;
     private boolean runProgram;
-    //private AwardsBag bag = new AwardsBag();
+    private AwardsBag bag = new AwardsBag();
     private DrinkHistory history = new DrinkHistory();
     private TodayDrinkingGoal goal = new TodayDrinkingGoal(500);
     private DrinkingBalance balance = new DrinkingBalance(day, month, year);
@@ -180,6 +179,25 @@ public class RespondCommand {
         }
     }
 
+    // EFFECTS: remove the corresponding medal
+    public void subMedal(int day, int month, int year, String date) {
+        if (bag.findMedal(date) != null) {
+            Medal needRemove = findMedal(date);
+            this.bag.removeMedal(needRemove);
+        } else {
+            this.bag = bag;
+        }
+    }
+
+    // EFFECTS: add rand medal
+    public void addMedal(int day, int month, int year, String date) {
+        if (bag.findMedal(date) == null) {
+            this.bag.addRandMedal(day, month, year);
+        } else {
+            this.bag = bag;
+        }
+    }
+
 
     // Must enter the proper format of date
     // EFFECTS: add balance
@@ -207,7 +225,8 @@ public class RespondCommand {
 
         System.out.println("current balance: " + balance.getBalance());
         if (balance.isAchieved()) {
-            history.getAwardsBag().addRandMedal();
+            //history.getAwardsBag().addRandMedal(inputDay, inputMonth, inputYear);
+            addMedal(inputDay, inputMonth, inputYear, date);
             System.out.println("current # medals: " + history.getAwardsBag().numMedalsInBag());
         }
     }
@@ -248,7 +267,8 @@ public class RespondCommand {
 
         System.out.println("current balance: " + balance.getBalance());
         if ((!balance.isAchieved()) && (history.getAwardsBag().numMedalsInBag() > 0)) {
-            history.getAwardsBag().subLastMedal();
+            //history.getAwardsBag().subMedal(inputDay, inputMonth, inputYear, date);
+            subMedal(inputDay, inputMonth, inputYear, date);
             System.out.println("current # medals: " + history.getAwardsBag().numMedalsInBag());
         }
     }
@@ -286,7 +306,8 @@ public class RespondCommand {
         System.out.println("current goal: " + goal.getGoal());
 
         if ((!balance.isAchieved()) && (history.getAwardsBag().numMedalsInBag() > 0)) {
-            history.getAwardsBag().subLastMedal();
+            //history.getAwardsBag().subMedal(inputDay, inputMonth, inputYear, date);
+            subMedal(inputDay, inputMonth, inputYear, date);
             System.out.println("current # medals: " + history.getAwardsBag().numMedalsInBag());
         }
 
@@ -301,6 +322,9 @@ public class RespondCommand {
             goal.addGoal(goal1);
         }
     }
+
+
+
 
     // EFFECTS: subtract goal
     public void subGoal() {
@@ -327,7 +351,11 @@ public class RespondCommand {
         goal.subGoal(goal2);
 
         System.out.println("current goal: " + goal.getGoal());
-        inputString.nextLine();
+        if (balance.isAchieved()) {
+            //history.getAwardsBag().addRandMedal(inputDay, inputMonth, inputYear);
+            addMedal(inputDay, inputMonth, inputYear, date);
+            System.out.println("current # medals: " + history.getAwardsBag().numMedalsInBag());
+        }
 
     }
 

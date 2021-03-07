@@ -21,7 +21,7 @@ public class DrinkingBalance implements Writable {
     private int month;
     private int day;
     private TodayDrinkingGoal goal = new TodayDrinkingGoal(500);
-    private AwardsBag bag = new AwardsBag();
+    //private AwardsBag bag = new AwardsBag();
 
 
     // REQUIRES: input day and month must be a proper date, not 02-31-2020, not future date like 01-01-2100
@@ -52,7 +52,7 @@ public class DrinkingBalance implements Writable {
 
     // REQUIRES: amount > 0
     // MODIFIES: this
-    // EFFECTS: adds amount ml to goal
+    // EFFECTS: adds goal with amount in ml
     public void addGoal(int goal) {
         this.goal = new TodayDrinkingGoal(goal);
     }

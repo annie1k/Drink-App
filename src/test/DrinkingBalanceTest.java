@@ -1,5 +1,6 @@
 import model.DrinkingBalance;
 import model.TodayDrinkingGoal;
+import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -10,6 +11,9 @@ public class DrinkingBalanceTest {
     private DrinkingBalance balance;
     private DrinkingBalance balance2;
     private TodayDrinkingGoal goal;
+    private int year;
+    private int month;
+    private int day;
     private int CHANGE_VALUE = 1;
     private int INITIAL_VALUE = 500;
 
@@ -17,6 +21,9 @@ public class DrinkingBalanceTest {
     public void runBefore(){
         balance = new DrinkingBalance(1,1,2021);
         goal = new TodayDrinkingGoal(INITIAL_VALUE);
+        year = 2021;
+        day = 1;
+        month = 1;
     }
 
     @Test
@@ -43,9 +50,10 @@ public class DrinkingBalanceTest {
     }
 
     @Test
+    //this is actually a constructor
     public void testAddGoal() {
-        goal.addGoal(CHANGE_VALUE);
-        assertEquals(CHANGE_VALUE + INITIAL_VALUE, goal.getGoal());
+        balance.addGoal(INITIAL_VALUE);
+        assertEquals(INITIAL_VALUE, this.goal.getGoal());
     }
 
     @Test
@@ -132,5 +140,32 @@ public class DrinkingBalanceTest {
         assertEquals(date +" corresponding balance: "+ balance.getBalance(),balance.combineDateBalance());
 
     }
+
+    @Test
+    public void testToJson() {
+        JSONObject json = new JSONObject();
+        JSONObject jsonDate = new JSONObject();
+        jsonDate.put("day", day);
+        jsonDate.put("month", month);
+        jsonDate.put("year", year);
+        json.put("date", jsonDate);
+        json.put("balance", balance.getBalance());
+        json.put("goal", goal.toJson());
+        assertEquals(json.toString(), balance.toJson().toString());
+
+    }
+
+    @Test
+    public void testToString() {
+
+    }
+
+    @Test
+    public void testGetGoal() {
+
+    }
+
+
+
 }
 

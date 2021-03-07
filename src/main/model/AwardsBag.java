@@ -16,7 +16,8 @@ public class AwardsBag implements Writable {
 
     // changing properties of awards bag
     // list of medal images in the bag
-    private final List<String> medals;
+    private static List<Medal> medals;
+    private static Medal medal;
 
 
     // EFFECTS: constructs an empty collection of medals that earned
@@ -25,28 +26,49 @@ public class AwardsBag implements Writable {
     }
 
 
-
     // MODIFIES: this
     // EFFECTS: adds a new medal to the collection of medal to awards bag
-    public void addRandMedal() {
+    public void addRandMedal(int day, int month, int year) {
         Random rand = new Random();
+        Medal medal = new Medal();
         int randMedalNum = rand.nextInt(10) + 1;
-        String randMedal = randMedalNum + ".png"; // Is this the problem?
-        this.medals.add(randMedal);
-    }
+        String randMedal = randMedalNum + ".png";
+        medal.setImg(randMedal);
+        medal.setDay(day);
+        medal.setMonth(month);
+        medal.setYear(year);
+        medal.getDate();
 
-    // MODIFIES: this
-    // EFFECTS: adds a new medal to the collection of medal to awards bag
-    public void addMedal(String m) {
-        String medal = m;
         this.medals.add(medal);
     }
 
-    // EFFECTS: remove the last medal
-    public void subLastMedal() {
-        int index = this.medals.size() - 1;
-        medals.remove(index);
+    // MODIFIES: this
+    // EFFECTS: adds a new medal to the collection of medal to awards bag
+    public void addMedal(Medal m) {
+        this.medals.add(m);
     }
+
+    // MODIFIES: this
+    // EFFECTS: remove a new medal to the collection of medal to awards bag
+    public void removeMedal(Medal m) {
+        this.medals.remove(m);
+    }
+
+    // EFFECT: add and return the drinking balance if it is not in the history, if exist, just return the original one
+    public static Medal findMedal(String date) {
+
+        for (int i = 0; i < medals.size(); i++) {
+            Medal m = medals.get(i);
+            String historyDate = m.getDate();
+            if (date.equals(historyDate)) {
+                return m;
+            }
+        }
+        return null;
+    }
+
+
+
 
     // EFFECTS: returns number of medals in bag
     public int numMedalsInBag() {
@@ -54,7 +76,7 @@ public class AwardsBag implements Writable {
     }
 
     // EFFECT: return the bag
-    public List<String> getBag() {
+    public List<Medal> getBag() {
         return this.medals;
     }
 
@@ -73,8 +95,13 @@ public class AwardsBag implements Writable {
     private JSONArray medalsToJson() {
         JSONArray jsonArray = new JSONArray();
 
-        for (String m : medals) {
-            jsonArray.put(m); // can this work?
+        for (Medal m : medals) {
+            JSONObject jo = new JSONObject();
+            jo.put("day",m.getDay());
+            jo.put("month",m.getMonth());
+            jo.put("year",m.getYear());
+            jo.put("img",m.getImg());
+            jsonArray.put(jo); // can this work?
         }
 
         return jsonArray;
@@ -82,7 +109,14 @@ public class AwardsBag implements Writable {
 
     @Override
     public String toString() {
-        return medals.toString();
+        JSONArray jsonArray = new JSONArray();
+
+        for (Medal m : medals) {
+
+            jsonArray.put(m.toString());
+        }
+
+        return jsonArray.toString();
     }
 
 
