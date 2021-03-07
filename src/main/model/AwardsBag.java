@@ -68,6 +68,7 @@ public class AwardsBag implements Writable {
         return json;
     }
 
+
     // EFFECTS: returns things in this awards bag as a JSON array
     private JSONArray medalsToJson() {
         JSONArray jsonArray = new JSONArray();
@@ -77,6 +78,11 @@ public class AwardsBag implements Writable {
         }
 
         return jsonArray;
+    }
+
+    @Override
+    public String toString() {
+        return medals.toString();
     }
 
 

@@ -42,7 +42,7 @@ public class RespondCommand {
     private Scanner inputString;
     private Scanner inputInt;
     private boolean runProgram;
-    private AwardsBag bag = new AwardsBag();
+    //private AwardsBag bag = new AwardsBag();
     private DrinkHistory history = new DrinkHistory();
     private TodayDrinkingGoal goal = new TodayDrinkingGoal(500);
     private DrinkingBalance balance = new DrinkingBalance(day, month, year);
@@ -139,27 +139,13 @@ public class RespondCommand {
 
     // EFFECTS: display all medals earned
     public void displayAllMedals() {
-        System.out.println("Please enter the day, for example, 1");
-        int inputDay = inputString.nextInt();
-        inputString.nextLine();
-        System.out.println("Please enter the month, for example, 1");
-        int inputMonth = inputString.nextInt();
-        inputString.nextLine();
-        System.out.println("Please enter the year, for example, 2000");
-        int inputYear = inputString.nextInt();
-        inputString.nextLine();
-
-        String date = cleanFormat(inputDay) + "-" + cleanFormat(inputMonth) + "-" + cleanFormat(inputYear);
-
-        findHistory(inputDay, inputMonth, inputYear, date);
-
-        bag = balance.getBag();
+        AwardsBag bag = history.getAwardsBag();
 
         System.out.println("you have " + bag.numMedalsInBag() + " medals");
         System.out.println("Awards: ");
-        for (int i = 0; i < bag.numMedalsInBag(); i++) {
-            System.out.println(bag.getBag());
-        }
+
+        System.out.println(bag.getBag());
+
     }
 
     // EFFECTS: display days have drink history
@@ -220,12 +206,9 @@ public class RespondCommand {
         balance.addBalance(balance1);
 
         System.out.println("current balance: " + balance.getBalance());
-        if (balance.isAchieved() && (bag.numMedalsInBag() == 0)) {
-            bag.addRandMedal();
-            System.out.println("current # medals: " + bag.numMedalsInBag());
-            //inputString.nextLine();
-            System.out.println(bag.numMedalsInBag());
-            balance.addMedal(bag.getBag());
+        if (balance.isAchieved()) {
+            history.getAwardsBag().addRandMedal();
+            System.out.println("current # medals: " + history.getAwardsBag().numMedalsInBag());
         }
     }
 
@@ -264,11 +247,9 @@ public class RespondCommand {
         balance.subBalance(balance2);
 
         System.out.println("current balance: " + balance.getBalance());
-        if ((!balance.isAchieved()) && (bag.numMedalsInBag() == 1)) {
-            bag.subLastMedal();
-            System.out.println("current # medals: " + bag.numMedalsInBag());
-            //inputString.nextLine();
-            balance.addMedal(bag.getBag());
+        if ((!balance.isAchieved()) && (history.getAwardsBag().numMedalsInBag() > 0)) {
+            history.getAwardsBag().subLastMedal();
+            System.out.println("current # medals: " + history.getAwardsBag().numMedalsInBag());
         }
     }
 
@@ -304,11 +285,9 @@ public class RespondCommand {
 
         System.out.println("current goal: " + goal.getGoal());
 
-        if ((!balance.isAchieved()) && (bag.numMedalsInBag() == 1)) {
-            bag.subLastMedal();
-            System.out.println("current # medals: " + bag.numMedalsInBag());
-            //inputString.nextLine();
-            balance.addMedal(bag.getBag());
+        if ((!balance.isAchieved()) && (history.getAwardsBag().numMedalsInBag() > 0)) {
+            history.getAwardsBag().subLastMedal();
+            System.out.println("current # medals: " + history.getAwardsBag().numMedalsInBag());
         }
 
     }

@@ -57,25 +57,10 @@ public class DrinkingBalance implements Writable {
         this.goal = new TodayDrinkingGoal(goal);
     }
 
-    // REQUIRES: amount > 0
-    // MODIFIES: this
-    // EFFECTS: adds list of medals
-    public void addMedal(List<String> ss) {
-        this.bag = new AwardsBag();
-        for (String s: ss) {
-            bag.addMedal(s);
-        }
-
-    }
 
     // EFFECTS: return current goal in ml
     public TodayDrinkingGoal getGoal() {
         return goal;
-    }
-
-    // EFFECTS: return bag
-    public AwardsBag getBag() {
-        return bag;
     }
 
 
@@ -146,14 +131,13 @@ public class DrinkingBalance implements Writable {
         json.put("date", jsonDate);
         json.put("balance", getBalance());
         json.put("goal", goal.toJson());
-        json.put("bag", bag.toJson());
         return json;
     }
 
     @Override
     public String toString() {
-        return String.format("day: %d, month: %d, year: %d, balance: %d, medals: %d", day, month,
-                year, balance, bag.numMedalsInBag());
+        return String.format("day: %d, month: %d, year: %d, balance: %d", day, month,
+                year, balance);
     }
 
 

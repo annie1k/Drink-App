@@ -14,6 +14,18 @@ public class DrinkHistory implements Writable {
     // changing properties of DrinkingHistory
     // list of date that drinks with drinking amount
     private List<DrinkingBalance> drinkHistory;
+    private AwardsBag awardsBag = new AwardsBag();
+
+    //
+    public AwardsBag getAwardsBag() {
+        return this.awardsBag;
+    }
+
+    //
+    public AwardsBag setAwardsBag(AwardsBag ab) {
+        this.awardsBag = ab;
+        return ab;
+    }
 
 
     // EFFECTS: constructs an empty history, which is list of drinking dates
@@ -56,6 +68,7 @@ public class DrinkHistory implements Writable {
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("balances", balancesToJson());
+        json.put("bag", awardsBag.toJson());
         return json;
     }
 
@@ -75,7 +88,9 @@ public class DrinkHistory implements Writable {
         StringBuilder sb = new StringBuilder();
         for (DrinkingBalance db: drinkHistory) {
             sb.append(db.toString());
+            sb.append(awardsBag.toString());
             sb.append("\n");
+
         }
         return sb.toString();
     }

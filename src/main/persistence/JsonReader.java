@@ -49,9 +49,28 @@ public class JsonReader {
     // EFFECTS: parses drink history from JSON object and returns it
     private DrinkHistory parseDrinkHistory(JSONObject jsonObject) {
         DrinkHistory dh = new DrinkHistory();
+
         addBalances(dh, jsonObject);
+
+        addMedals(dh, jsonObject);
+
         return dh;
     }
+
+    //
+    private void addMedals(DrinkHistory dh, JSONObject jsonObject) {
+        JSONObject awardBag = jsonObject.getJSONObject("bag");
+        JSONArray medals = awardBag.getJSONArray("medals");
+
+        AwardsBag ab = new AwardsBag();
+
+        for (int i = 0; i < medals.length(); i++) {
+            String medal = (String) medals.get(i);
+            ab.addMedal(medal);
+        }
+        dh.setAwardsBag(ab);
+    }
+
 
     // MODIFIES: dh
     // EFFECTS: parses balances from JSON object and adds them to history
@@ -76,23 +95,12 @@ public class JsonReader {
         JSONObject jsonGoal = jsonObject.getJSONObject("goal");
         int goal = jsonGoal.getInt("goal");
 
-        JSONObject jsonBag = jsonObject.getJSONObject("bag");
-        JSONArray medals = jsonBag.getJSONArray("medal");
-        int total = jsonBag.getInt("total number");
 
 
         DrinkingBalance drinkingBalance = new DrinkingBalance(day, month, year);
         drinkingBalance.addBalance(balance);
         drinkingBalance.addGoal(goal);
 
-        ArrayList<String> listdata = new ArrayList<String>();
-        if (medals != null) {
-            for (int i = 0; i < medals.length(); i++) {
-                listdata.add((String) medals.get(i));
-            }
-        }
-
-        drinkingBalance.addMedal(listdata);
         dh.addDate(drinkingBalance);
     }
 
