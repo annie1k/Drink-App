@@ -16,12 +16,12 @@ public class DrinkHistory implements Writable {
     private List<DrinkingBalance> drinkHistory;
     private AwardsBag awardsBag = new AwardsBag();
 
-    //
+    // EFFECTS: get this award bag
     public AwardsBag getAwardsBag() {
         return this.awardsBag;
     }
 
-    //
+    // EFFECTS: set this award bag to be ab
     public AwardsBag setAwardsBag(AwardsBag ab) {
         this.awardsBag = ab;
         return ab;
@@ -85,6 +85,7 @@ public class DrinkHistory implements Writable {
         return jsonArray;
     }
 
+    // EFFECTS: returns string building containing history, awards bag to be string
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

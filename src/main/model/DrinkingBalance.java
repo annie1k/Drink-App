@@ -134,6 +134,7 @@ public class DrinkingBalance implements Writable {
         return json;
     }
 
+    // EFFECTS: return important day, month, year, balance, in String
     @Override
     public String toString() {
         return String.format("day: %d, month: %d, year: %d, balance: %d", day, month,

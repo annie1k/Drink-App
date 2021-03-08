@@ -107,6 +107,8 @@ public class AwardsBag implements Writable {
         return jsonArray;
     }
 
+
+    //EFFECTS: Make json array to string
     @Override
     public String toString() {
         JSONArray jsonArray = new JSONArray();

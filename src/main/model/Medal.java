@@ -6,38 +6,47 @@ public class Medal {
     private int day;
     private String img;
 
+    // EFFECTS: get the year
     public int getYear() {
         return year;
     }
 
+    // EFFECTS: set the year to be year
     public void setYear(int year) {
         this.year = year;
     }
 
+    // EFFECTS: get the month
     public int getMonth() {
         return month;
     }
 
+    // EFFECTS: set the month to be month
     public void setMonth(int month) {
         this.month = month;
     }
 
+    // EFFECTS: get the day
     public int getDay() {
         return day;
     }
 
+    // EFFECTS: set the day to be day
     public void setDay(int day) {
         this.day = day;
     }
 
+    // EFFECTS: get the string address of the image (x.png)
     public String getImg() {
         return img;
     }
 
+    // EFFECTS: set the string img to be img (x.png)
     public void setImg(String img) {
         this.img = img;
     }
 
+    // EFFECTS: convert day, month, year, img into String
     public String toString() {
         return String.format("day: %d, month: %d, year: %d, img: %s", day, month,
                 year, img);

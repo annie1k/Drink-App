@@ -179,7 +179,7 @@ public class RespondCommand {
         }
     }
 
-    // EFFECTS: remove the corresponding medal
+    // EFFECTS: remove the corresponding medal if balance no longer meet that day's goal
     public void subMedal(int day, int month, int year, String date) {
         if (bag.findMedal(date) != null) {
             Medal needRemove = findMedal(date);
@@ -189,7 +189,7 @@ public class RespondCommand {
         }
     }
 
-    // EFFECTS: add rand medal
+    // EFFECTS: add rand medal if that day don't have medal yet
     public void addMedal(int day, int month, int year, String date) {
         if (bag.findMedal(date) == null) {
             this.bag.addRandMedal(day, month, year);
@@ -200,7 +200,7 @@ public class RespondCommand {
 
 
     // Must enter the proper format of date
-    // EFFECTS: add balance
+    // EFFECTS: add balance, also check whether balance meet the goal, if yes, add medal to that day
     public void addBalance() {
         //ask the date
         System.out.println("Please enter the day, for example, 1");
@@ -243,7 +243,7 @@ public class RespondCommand {
     }
 
 
-    // EFFECTS: subtract balance
+    // EFFECTS: subtract balance, also check whether balance meet the goal, if no, subtract that day's medal
     public void subBalance() {
         System.out.println("Please enter the day, for example, 1");
         int inputDay = inputString.nextInt();
@@ -274,7 +274,7 @@ public class RespondCommand {
     }
 
 
-    // EFFECTS: add goal
+    // EFFECTS: add goal, also check whether balance meet the goal, if no, subtract that day's medal
     public void addGoal() {
 
         System.out.println("Please enter the day, for example, 1");
@@ -326,7 +326,7 @@ public class RespondCommand {
 
 
 
-    // EFFECTS: subtract goal
+    // EFFECTS: subtract goal, also check whether balance meet the goal, if yes, add medal to that day
     public void subGoal() {
         System.out.println("Please enter the day, for example, 1");
         int inputDay = inputString.nextInt();

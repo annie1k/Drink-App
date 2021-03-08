@@ -1,49 +1,57 @@
-//package persistence;
-//
-//// refer to Json Serialization Demo
-//
-//
-//import org.junit.jupiter.api.Test;
-//
-//import java.io.IOException;
-//
-//class JsonReaderTest extends JsonTest {
-//
-//    @Test
-//    void testReaderNonExistentFile() {
-//        JsonReader reader = new JsonReader("./data/noSuchFile.json");
-//        try {
-//            WorkRoom wr = reader.read();
-//            fail("IOException expected");
-//        } catch (IOException e) {
-//            // pass
-//        }
-//    }
-//
-//    @Test
-//    void testReaderEmptyWorkRoom() {
-//        JsonReader reader = new JsonReader("./data/testReaderEmptyWorkRoom.json");
-//        try {
-//            WorkRoom wr = reader.read();
-//            assertEquals("My work room", wr.getName());
-//            assertEquals(0, wr.numThingies());
-//        } catch (IOException e) {
-//            fail("Couldn't read from file");
-//        }
-//    }
-//
-//    @Test
-//    void testReaderGeneralWorkRoom() {
-//        JsonReader reader = new JsonReader("./data/testReaderGeneralWorkRoom.json");
-//        try {
-//            WorkRoom wr = reader.read();
-//            assertEquals("My work room", wr.getName());
-//            List<Thingy> thingies = wr.getThingies();
-//            assertEquals(2, thingies.size());
-//            checkThingy("needle", Category.STITCHING, thingies.get(0));
-//            checkThingy("saw", Category.WOODWORK, thingies.get(1));
-//        } catch (IOException e) {
-//            fail("Couldn't read from file");
-//        }
-//    }
-//}
+package persistence;
+
+// refer to Json Serialization Demo
+
+
+import model.DrinkHistory;
+import model.DrinkingBalance;
+import model.Medal;
+import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
+
+class JsonReaderTest extends JsonTest {
+
+    @Test
+    void testReaderNonExistentFile() {
+        JsonReader reader = new JsonReader("./data/noSuchFile.json");
+        try {
+            DrinkHistory dh = reader.readHistory();
+            fail("IOException expected");
+        } catch (IOException e) {
+            // pass
+        }
+    }
+
+    @Test
+    void testReaderEmptyHistory() {
+        JsonReader reader = new JsonReader("./data/drinkApp.json");
+        try {
+            DrinkHistory dh = reader.readHistory();
+            assertEquals("[day: 1, month: 1, year: 2000, balance: 5000]", dh.getDrinkHistory().toString());
+            assertEquals(1, dh.numDatesRecorded());
+        } catch (IOException e) {
+            fail("Couldn't read from file");
+        }
+    }
+
+    @Test
+    void testReaderGeneralHistory() {
+        JsonReader reader = new JsonReader("./data/drinkApp.json");
+        try {
+            DrinkHistory dh = reader.readHistory();
+            assertEquals("[day: 1, month: 1, year: 2000, balance: 5000]", dh.getDrinkHistory().toString());
+            List<DrinkingBalance> balances = dh.getDrinkHistory();
+            List<Medal> medals = dh.getAwardsBag().getBag();
+
+            //checkHistory();
+
+        } catch (IOException e) {
+            fail("Couldn't read from file");
+        }
+    }
+}

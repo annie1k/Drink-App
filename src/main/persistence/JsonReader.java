@@ -54,7 +54,7 @@ public class JsonReader {
         return dh;
     }
 
-    //
+    // EFFECTS: add medal if not exist yet in that day
     private void addMedals(DrinkHistory dh, JSONObject jsonObject) {
         JSONObject awardBag = jsonObject.getJSONObject("bag");
         JSONArray medals = awardBag.getJSONArray("medals");
@@ -106,40 +106,5 @@ public class JsonReader {
 
         dh.addDate(drinkingBalance);
     }
-
-
-
-
-//    // EFFECTS: reads awards bag from file and returns it;
-//    // throws IOException if an error occurs reading data from file
-//    public AwardsBag readAwards() throws IOException {
-//        String jsonData = readFile(source);
-//        JSONObject jsonObject = new JSONObject(jsonData);
-//        return parseAwardsBag(jsonObject);
-//    }
-//
-//
-//    // EFFECTS: parses medal bag from JSON object and returns it
-//    private AwardsBag parseAwardsBag(JSONObject jsonObject) {
-//        AwardsBag ab = new AwardsBag();
-//        addMedals(ab, jsonObject);
-//        return ab;
-//    }
-//
-//    // MODIFIES: ab
-//    // EFFECTS: parses medals from JSON object and adds them to award bag
-//    private void addMedals(AwardsBag ab, JSONObject jsonObject) {
-//        JSONArray jsonArray = jsonObject.getJSONArray("Awards");
-//        for (Object json : jsonArray) {
-//            JSONObject nextMedal = (JSONObject) json;
-//            addMedal(ab, nextMedal);
-//        }
-//    }
-//
-//    // MODIFIES: ab
-//    // EFFECTS: parses medal from JSON object and adds it to award bag
-//    private void addMedal(AwardsBag ab, JSONObject jsonObject) {
-//        ab.addRandMedal();
-//    }
 
 }
