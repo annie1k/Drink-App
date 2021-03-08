@@ -49,7 +49,7 @@ public class AwardsBag implements Writable {
     }
 
     // MODIFIES: this
-    // EFFECTS: remove a new medal to the collection of medal to awards bag
+    // EFFECTS: remove the corresponding medal to the collection of medal from awards bag
     public void removeMedal(Medal m) {
         this.medals.remove(m);
     }
@@ -68,20 +68,18 @@ public class AwardsBag implements Writable {
     }
 
 
-
-
     // EFFECTS: returns number of medals in bag
     public int numMedalsInBag() {
         return this.medals.size();
     }
 
-    // EFFECT: return the bag
+    // EFFECT: return the awards bag
     public List<Medal> getBag() {
         return this.medals;
     }
 
 
-    //EFFECTS: return json
+    //EFFECTS: set json for the given key value and return json
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -91,7 +89,7 @@ public class AwardsBag implements Writable {
     }
 
 
-    // EFFECTS: returns things in this awards bag as a JSON array
+    // EFFECTS: set key for medal object and returns medals in this awards bag as a JSON array
     public JSONArray medalsToJson() {
         JSONArray jsonArray = new JSONArray();
 

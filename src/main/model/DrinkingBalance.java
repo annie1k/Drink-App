@@ -120,7 +120,7 @@ public class DrinkingBalance implements Writable {
         return getDate() + " corresponding balance: " + getBalance();
     }
 
-    //EFFECTS: return json
+    //EFFECTS: set json object with key values and return this json object
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -134,7 +134,7 @@ public class DrinkingBalance implements Writable {
         return json;
     }
 
-    // EFFECTS: return important day, month, year, balance, in String
+    // EFFECTS: return important day, month, year, balance together in String
     @Override
     public String toString() {
         return String.format("day: %d, month: %d, year: %d, balance: %d", day, month,

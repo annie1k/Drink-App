@@ -6,8 +6,6 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Stream;
 
 import org.json.*;
@@ -23,7 +21,7 @@ public class JsonReader {
     }
 
     // EFFECTS: reads drink history from file and returns it;
-    // throws IOException if an error occurs reading data from file
+    //          throws IOException if an error occurs reading data from file
     public DrinkHistory readHistory() throws IOException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
@@ -54,6 +52,7 @@ public class JsonReader {
         return dh;
     }
 
+    // MODIFIES: dh, ab
     // EFFECTS: add medal if not exist yet in that day
     private void addMedals(DrinkHistory dh, JSONObject jsonObject) {
         JSONObject awardBag = jsonObject.getJSONObject("bag");

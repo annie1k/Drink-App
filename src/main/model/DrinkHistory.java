@@ -6,7 +6,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
 
-import java.nio.file.Watchable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +20,7 @@ public class DrinkHistory implements Writable {
         return this.awardsBag;
     }
 
+    // MODIFIES: this
     // EFFECTS: set this award bag to be ab
     public AwardsBag setAwardsBag(AwardsBag ab) {
         this.awardsBag = ab;
@@ -39,7 +39,7 @@ public class DrinkHistory implements Writable {
         this.drinkHistory.add(newDrinkBalance);
     }
 
-    // EFFECTS: returns number of dates in history recorded
+    // EFFECTS: returns the total number of dates in history recorded
     public int numDatesRecorded() {
         return this.drinkHistory.size();
     }
@@ -65,7 +65,7 @@ public class DrinkHistory implements Writable {
 
 
 
-    //EFFECTS: return json
+    //EFFECTS: set key to json object and return json object
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -74,7 +74,7 @@ public class DrinkHistory implements Writable {
         return json;
     }
 
-    // EFFECTS: returns balances in this history as a JSON array
+    // EFFECTS: get balances in this history and put them as in JSON array
     public JSONArray balancesToJson() {
         JSONArray jsonArray = new JSONArray();
 
@@ -85,7 +85,7 @@ public class DrinkHistory implements Writable {
         return jsonArray;
     }
 
-    // EFFECTS: returns string building containing history, awards bag to be string
+    // EFFECTS: returns string building containing history, awards bag and make all their type to be string
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

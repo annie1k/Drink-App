@@ -157,12 +157,12 @@ public class RespondCommand {
 
     }
 
-    // EFFECTS: display balance of today's drink habit
+    // EFFECTS: display balance of today's drink habit, actually is will be a fixed number
     public void displayBalance() {
         System.out.println("Today you drink " + balance.getBalance() + " ml so far.");
     }
 
-    // EFFECTS: display goal
+    // EFFECTS: display goal of today's drink habit, actually is will be a fixed number
     public void displayGoal() {
         System.out.println("Today's goal is: " + goal.getGoal());
     }
@@ -179,6 +179,7 @@ public class RespondCommand {
         }
     }
 
+    // MODIFIES: this
     // EFFECTS: remove the corresponding medal if balance no longer meet that day's goal
     public void subMedal(int day, int month, int year, String date) {
         if (bag.findMedal(date) != null) {
@@ -189,6 +190,7 @@ public class RespondCommand {
         }
     }
 
+    // MODIFIES: this
     // EFFECTS: add rand medal if that day don't have medal yet
     public void addMedal(int day, int month, int year, String date) {
         if (bag.findMedal(date) == null) {
@@ -200,6 +202,7 @@ public class RespondCommand {
 
 
     // Must enter the proper format of date
+    // MODIFIES: this
     // EFFECTS: add balance, also check whether balance meet the goal, if yes, add medal to that day
     public void addBalance() {
         //ask the date
@@ -243,6 +246,7 @@ public class RespondCommand {
     }
 
 
+    // MODIFIES: this
     // EFFECTS: subtract balance, also check whether balance meet the goal, if no, subtract that day's medal
     public void subBalance() {
         System.out.println("Please enter the day, for example, 1");
@@ -274,6 +278,7 @@ public class RespondCommand {
     }
 
 
+    // MODIFIES: this
     // EFFECTS: add goal, also check whether balance meet the goal, if no, subtract that day's medal
     public void addGoal() {
 
@@ -313,6 +318,7 @@ public class RespondCommand {
 
     }
 
+    // MODIFIES: this
     //EFFECTS: find if exist a day that have use history, exist then set balance to this.goal, create new otherwise
     private void historyForGoal(int goal1) {
         if (goal == null) {
@@ -325,7 +331,7 @@ public class RespondCommand {
 
 
 
-
+    // MODIFIES: this
     // EFFECTS: subtract goal, also check whether balance meet the goal, if yes, add medal to that day
     public void subGoal() {
         System.out.println("Please enter the day, for example, 1");
@@ -359,7 +365,8 @@ public class RespondCommand {
 
     }
 
-    //EFFECTS: find if exist a day that have use history, exist then set balance to this.balance, create new otherwise
+    // MODIFIES: this
+    // EFFECTS: find if exist a day that have use history, exist then set balance to this.balance, create new otherwise
     private void findHistory(int inputDay, int inputMonth, int inputYear, String date) {
         if (history.findBalance(date) == null) {
             balance = new DrinkingBalance(inputDay, inputMonth, inputYear);

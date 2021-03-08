@@ -11,6 +11,7 @@ public class Medal {
         return year;
     }
 
+    // MODIFIES: this
     // EFFECTS: set the year to be year
     public void setYear(int year) {
         this.year = year;
@@ -21,6 +22,7 @@ public class Medal {
         return month;
     }
 
+    // MODIFIES: this
     // EFFECTS: set the month to be month
     public void setMonth(int month) {
         this.month = month;
@@ -31,6 +33,7 @@ public class Medal {
         return day;
     }
 
+    // MODIFIES: this
     // EFFECTS: set the day to be day
     public void setDay(int day) {
         this.day = day;
@@ -41,12 +44,13 @@ public class Medal {
         return img;
     }
 
+    // MODIFIES: this
     // EFFECTS: set the string img to be img (x.png)
     public void setImg(String img) {
         this.img = img;
     }
 
-    // EFFECTS: convert day, month, year, img into String
+    // EFFECTS: convert day, month, year, img all together into String
     public String toString() {
         return String.format("day: %d, month: %d, year: %d, img: %s", day, month,
                 year, img);
