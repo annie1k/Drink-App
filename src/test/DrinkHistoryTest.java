@@ -104,20 +104,20 @@ public class DrinkHistoryTest {
     }
 
     @Test
-    public void testToStringMelti() {
+    public void testToStringMulti() {
         emptyHistory.addDate(balance1);
         emptyHistory.addDate(balance2);
         assertEquals("[day: 1, month: 2, year: 2001, balance: 0, day: 3, month: 4, year: 2002, balance: 0]",
                 emptyHistory.getDrinkHistory().toString());
     }
 
-//    @Test
-//    public void testToJson() {
-//        JSONObject json = new JSONObject();
-//        json.put("balances", emptyHistory.balancesToJson());
-//        json.put("bag", emptyHistory.toJson());
-//        assertEquals(json.toString(), emptyHistory.toJson().toString());
-//    }
+    @Test
+    public void testToJson() {
+        JSONObject json = new JSONObject();
+        json.put("balances", emptyHistory.balancesToJson());
+        json.put("bag", emptyHistory.getAwardsBag().toJson());
+        assertEquals(json.toString(), emptyHistory.toJson().toString());
+    }
 
 
 }

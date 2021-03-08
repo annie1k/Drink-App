@@ -4,6 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import sun.net.www.content.image.png;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -118,18 +119,21 @@ public class AwardsBagTest {
         assertEquals(1,emptyBag.numMedalsInBag());
     }
 
-//    @Test
-//    public void testFindMedal() {
-//        emptyBag.addMedal(medal1);
-//        emptyBag.addMedal(medal2);
-//        emptyBag.addMedal(medal3);
-//        result1 = emptyBag.
-//        assertEquals(medal1,);
-//    }
+    @Test
+    public void testFindMedal() {
+        Medal result1 = emptyBag.findMedal("day: 1, month: 1, year: 1, img: 1.png");
+        assertEquals(null, result1);
+    }
+
+
+
 
     @Test
-    public void testToStringSingle() {
-        assertEquals("day: 1, month: 1, year: 1, img: 1.png",medal1.toString());
+    public void testToStringList() {
+        emptyBag.addMedal(medal1);
+        emptyBag.addMedal(medal2);
+        assertEquals("day: 2, month: 2, year: 2, img: 1.png", emptyBag.getBag().get(1).toString());
+        assertEquals("day: 1, month: 1, year: 1, img: 1.png", emptyBag.getBag().get(0).toString());
     }
 
     @Test
