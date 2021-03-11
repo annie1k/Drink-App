@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import sun.net.www.content.image.png;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 // Unit tests for FoodServiceCard class
 public class AwardsBagTest {
@@ -134,6 +135,11 @@ public class AwardsBagTest {
         emptyBag.addMedal(medal2);
         assertEquals("day: 2, month: 2, year: 2, img: 1.png", emptyBag.getBag().get(1).toString());
         assertEquals("day: 1, month: 1, year: 1, img: 1.png", emptyBag.getBag().get(0).toString());
+    }
+
+    @Test
+    public void testToStringListEmpty() {
+        assertEquals("[]",emptyBag.toString());
     }
 
     @Test
