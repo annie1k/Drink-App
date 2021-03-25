@@ -1,4 +1,4 @@
-package ui;
+package ui.OLD;
 
 public class FrontPage {
 

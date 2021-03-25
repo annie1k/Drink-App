@@ -126,6 +126,22 @@ public class AwardsBagTest {
         assertEquals(null, result1);
     }
 
+//    @Test
+//    public void testFindMedalFirst() {
+//        emptyBag.addMedal(medal1);
+//        emptyBag.addMedal(medal2);
+//        Medal result1 = emptyBag.findMedal("day: 1, month: 1, year: 1, img: 1.png");
+//        assertEquals(null, result1);
+//    }
+//
+//    @Test
+//    public void testFindMedalSecond() {
+//        emptyBag.addMedal(medal2);
+//        emptyBag.addMedal(medal1);
+//        Medal result1 = emptyBag.findMedal("day: 1, month: 1, year: 1, img: 1.png");
+//        assertEquals(null, result1);
+//    }
+
 
 
 
