@@ -1,4 +1,4 @@
-package ui.BalancePage;
+package ui.drink.BalancePage;
 
 public class DrinkingListener {
 }

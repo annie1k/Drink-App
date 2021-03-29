@@ -1,13 +1,5 @@
 {
-    "balances": [{
-        "date": {
-            "month": 1,
-            "year": 2000,
-            "day": 1
-        },
-        "goal": {"goal": 500},
-        "balance": 5000
-    }],
+    "balances": [],
     "bag": {
         "medals": [],
         "total number": 0

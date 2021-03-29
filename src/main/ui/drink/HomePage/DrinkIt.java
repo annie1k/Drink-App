@@ -1,12 +1,10 @@
-package ui.HomePage;
+package ui.drink.HomePage;
 
 import model.DrinkHistory;
 
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-//import ui.HomePage.Entry;
-//import model.EntryList;
 
 // GUI for Drink It App :)
 public class DrinkIt extends Frame {
@@ -30,23 +28,35 @@ public class DrinkIt extends Frame {
 
         //one label
         Label welcome = new Label("Welcome to Drink It App, Let's Drink!");
-        
 
+        setAndAddEverything(frame,panelForButtons,panelForLabel,drinking,history,bag,save,load,welcome);
 
+        pack();
+
+        frame.setResizable(false);
+
+        frame.setVisible(true);
+
+        windowClose(frame);
+    }
+
+    // Modifies: this
+    // Effects: set and add every element in this frame
+    private void setAndAddEverything(Frame frame, Panel panelForButtons, Panel panelForLabel, Button drinking,
+                                     Button history, Button bag, Button save, Button load, Label welcome) {
         frame.setLayout(null);
 
         frame.setBounds(200, 200, 500, 300);
         frame.setBackground(new Color(154, 186, 236));
         panelForButtons.setBounds(25, 180, 450, 70);
         panelForButtons.setBackground(new Color(203, 217, 239));
-        panelForLabel.setBounds(100,100,300,30);
+        panelForLabel.setBounds(100, 100, 300, 30);
         panelForLabel.setBackground(new Color(246, 227, 235));
 
 
         panelForLabel.add(welcome);
         frame.add(panelForLabel);
         frame.add(panelForButtons);
-
 
 
         panelForButtons.add(drinking);
@@ -62,20 +72,14 @@ public class DrinkIt extends Frame {
         load.setActionCommand("load");
         save.setActionCommand("save");
 
-        setActionCommand(drinking,history,bag,load,save);
+        setActionCommand(drinking, history, bag, load, save);
 
 
         panelForButtons.setLayout(new FlowLayout());
-
-        pack();
-
-        frame.setResizable(false);
-
-        frame.setVisible(true);
-
-        windowClose(frame);
     }
 
+    // Modifies: this
+    // Effects: close the window
     private static void windowClose(Frame frame) {
         frame.addWindowListener(new WindowAdapter() {
             @Override
@@ -85,13 +89,19 @@ public class DrinkIt extends Frame {
         });
     }
 
+    // Modifies: this
+    // Effects: add action listeners
     private static void setActionCommand(Button drinking, Button history, Button bag,
-                                         Button load,Button save) {
+                                         Button load, Button save) {
         drinking.addActionListener(hpActionListener);
         history.addActionListener(hpActionListener);
         bag.addActionListener(hpActionListener);
         save.addActionListener(hpActionListener);
         load.addActionListener(hpActionListener);
+    }
+
+    public static void main(String[] args) {
+        new DrinkIt();
     }
 }
 

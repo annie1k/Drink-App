@@ -1,4 +1,4 @@
-package ui.OLD;
+package ui.drink.OLD;
 
 import model.*;
 import persistence.JsonReader;
