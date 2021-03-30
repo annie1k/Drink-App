@@ -1,11 +1,17 @@
 package ui.drink.balance;
 
+import model.DrinkHistory;
+import ui.drink.history.History;
+import ui.drink.home.DrinkIt;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AddDrinking extends JFrame implements ActionListener {
+public class AddDrinking extends JFrame {
+    private AddDrinkingHandler addDrinkingHandler;
+    private DrinkHistory history;
     private static JTextField year;
     private static JTextField month;
     private static JTextField day;
@@ -24,7 +30,9 @@ public class AddDrinking extends JFrame implements ActionListener {
 
     private static JButton saveButton;
 
-    public AddDrinking() {
+    public AddDrinking(DrinkHistory history) {
+        this.history = history;
+
 
         setTitle("Add Balance");
 
@@ -40,6 +48,8 @@ public class AddDrinking extends JFrame implements ActionListener {
 
         //1 button
         saveButton = new JButton("Save");
+        addDrinkingHandler = new AddDrinkingHandler(history,year, month, day, addBalance, subBalance, addGoal, subGoal);
+        saveButton.addActionListener(addDrinkingHandler);
 
         setLayout(new FlowLayout());
 
@@ -48,7 +58,7 @@ public class AddDrinking extends JFrame implements ActionListener {
 
         this.setVisible(true);
         setResizable(false);
-        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 
     }
 
@@ -100,12 +110,4 @@ public class AddDrinking extends JFrame implements ActionListener {
     }
 
 
-    public static void main(String[] args) {
-        new AddDrinking();
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
-    }
 }

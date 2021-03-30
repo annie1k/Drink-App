@@ -37,7 +37,7 @@ public class LoginView extends JFrame {
         contentPane.add(centerPanel,BorderLayout.CENTER);
 
         setSize(600,400);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
         setVisible(true);
@@ -103,7 +103,4 @@ public class LoginView extends JFrame {
         return pwdInput;
     }
 
-    public static void main(String[] args) {
-        new LoginView();
-    }
 }

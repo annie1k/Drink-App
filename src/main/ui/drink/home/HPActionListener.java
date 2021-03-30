@@ -32,7 +32,7 @@ public class HPActionListener implements ActionListener {
         jsonReader = new JsonReader(JSON_STORE);
 
         if (e.getActionCommand().equals("drinking")) {
-            new AddDrinking();
+            new AddDrinking(history);
         } else if (e.getActionCommand().equals("history")) {
             DrinkHistory history = app.getDrinkHistory();
             new History(history);

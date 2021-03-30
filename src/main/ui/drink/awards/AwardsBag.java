@@ -27,7 +27,7 @@ public class AwardsBag extends JFrame {
         displayImages();
 
         setSize(600, 400);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         setVisible(true);
     }

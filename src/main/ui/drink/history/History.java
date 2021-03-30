@@ -32,7 +32,7 @@ public class History extends JFrame {
 
         this.setVisible(true);
         this.setSize(200, 200);
-        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     }
 
     public List<String> listOfHistory() {
