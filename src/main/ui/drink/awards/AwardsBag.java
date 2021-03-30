@@ -20,13 +20,10 @@ public class AwardsBag extends JFrame {
 
         setLayout(new FlowLayout());
 
-//        add(new JLabel(new ImageIcon("./MetalBank/1.png")));
-//        add(new JLabel(new ImageIcon("./MetalBank/2.png")));
-//        add(new JLabel(new ImageIcon("./MetalBank/2.png")));
 
         displayImages();
 
-        setSize(600, 400);
+        setSize(1500, 1000);
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
         setVisible(true);

@@ -63,6 +63,13 @@ public class DrinkHistory implements Writable {
         return null;
     }
 
+    // MODIFIES: this
+    // EFFECTS: empty the list
+    public void clearHistory() {
+        drinkHistory = new ArrayList<>();
+        awardsBag = new AwardsBag();
+    }
+
 
 
     //EFFECTS: set key to json object and return json object

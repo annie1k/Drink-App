@@ -10,15 +10,18 @@ import java.util.List;
 public class History extends JFrame {
     private DrinkHistory history;
     private List<String> listHistory;
+    private JButton clearButton;
+    private JTextArea textArea;
 
     public History(DrinkHistory history) {
+        JPanel southPanel = new JPanel();
         this.history = history;
         listHistory = new ArrayList<>();
         listOfHistory();
         Container container = this.getContentPane();
         setTitle("History");
 
-        JTextArea textArea = new JTextArea(listHistory.size(),1);
+        textArea = new JTextArea(listHistory.size(),1);
 
         System.out.println(listHistory.size());
 
@@ -28,7 +31,12 @@ public class History extends JFrame {
 
         JScrollPane scrollPane = new JScrollPane(textArea);
 
-        container.add(scrollPane);
+        clearButton = new JButton("Clear");
+        clearButton.addActionListener(new HistoryHandler(this));
+        southPanel.add(clearButton);
+
+        container.add(scrollPane,BorderLayout.CENTER);
+        container.add(southPanel,BorderLayout.SOUTH);
 
         this.setVisible(true);
         this.setSize(200, 200);
@@ -41,6 +49,11 @@ public class History extends JFrame {
             listHistory.add(history.getDrinkHistory().get(i).combineDateBalance());
         }
         return listHistory;
+    }
+
+    public void clear() {
+        history.clearHistory();
+        textArea.setText("");
     }
 
 }
