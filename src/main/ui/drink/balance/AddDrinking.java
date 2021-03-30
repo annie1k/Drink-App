@@ -1,4 +1,4 @@
-package ui.drink.BalancePage;
+package ui.drink.balance;
 
 import javax.swing.*;
 import java.awt.*;
@@ -66,7 +66,10 @@ public class AddDrinking extends JFrame implements ActionListener {
 
     // MODIFIES: this
     // EFFECTS: add every elements
-    private void addEverything(JLabel yearLabel, JTextField year, JLabel monthLabel, JTextField month, JLabel dayLabel, JTextField day, JLabel addBalanceLabel, JTextField addBalance, JLabel addGoalLabel, JTextField addGoal, JLabel subBalanceLabel, JTextField subBalance, JLabel subGoalLabel, JTextField subGoal, JButton saveButton) {
+    private void addEverything(JLabel yearLabel, JTextField year, JLabel monthLabel, JTextField month,
+                               JLabel dayLabel, JTextField day, JLabel addBalanceLabel, JTextField addBalance,
+                               JLabel addGoalLabel, JTextField addGoal, JLabel subBalanceLabel, JTextField subBalance,
+                               JLabel subGoalLabel, JTextField subGoal, JButton saveButton) {
         add(yearLabel);
         add(year);
         add(monthLabel);

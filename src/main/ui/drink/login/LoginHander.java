@@ -1,6 +1,6 @@
-package ui.drink.LogIn;
+package ui.drink.login;
 
-import ui.drink.HomePage.DrinkIt;
+import ui.drink.home.DrinkIt;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -43,7 +43,7 @@ public class LoginHander implements ActionListener {
         String pwd = new String(chars);
         System.out.println(loginView.getUserNameInput().getText());
         System.out.println(pwd);
-        if (("annie" == loginView.getUserNameInput().getText()) && (pwd == "210")) {
+        if (("annie".equals(loginView.getUserNameInput().getText())) && pwd.equals("210")) {
             return true;
         } else {
             return false;

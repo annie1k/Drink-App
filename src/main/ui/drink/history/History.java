@@ -1,4 +1,4 @@
-package ui.drink.History;
+package ui.drink.history;
 
 import model.DrinkHistory;
 

@@ -1,39 +1,7 @@
 {
-    "balances": [
-        {
-            "date": {
-                "month": 1,
-                "year": 2000,
-                "day": 1
-            },
-            "goal": {"goal": 500},
-            "balance": 50000
-        },
-        {
-            "date": {
-                "month": 2,
-                "year": 2000,
-                "day": 1
-            },
-            "goal": {"goal": 500},
-            "balance": 3000
-        }
-    ],
+    "balances": [],
     "bag": {
-        "medals": [
-            {
-                "img": "./MetalBank/6.png",
-                "month": 1,
-                "year": 2000,
-                "day": 1
-            },
-            {
-                "img": "./MetalBank/5.png",
-                "month": 2,
-                "year": 2000,
-                "day": 1
-            }
-        ],
-        "total number": 2
+        "medals": [],
+        "total number": 0
     }
 }

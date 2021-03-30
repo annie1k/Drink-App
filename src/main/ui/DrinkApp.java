@@ -1,4 +1,6 @@
-package ui.drink.LogIn;
+package ui;
+
+import ui.drink.login.LoginView;
 
 public class DrinkApp {
     public static void main(String[] args) {

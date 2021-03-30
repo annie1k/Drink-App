@@ -1,4 +1,4 @@
-package ui.drink.LogIn;
+package ui.drink.login;
 
 import javax.swing.*;
 import java.awt.*;

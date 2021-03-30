@@ -1,4 +1,4 @@
-package ui.drink.HomePage;
+package ui.drink.home;
 
 import model.DrinkHistory;
 import java.awt.*;

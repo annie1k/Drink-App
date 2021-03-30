@@ -1,4 +1,4 @@
-package ui.drink.OLD;
+package ui.drink.old;
 
 public class FrontPage {
 

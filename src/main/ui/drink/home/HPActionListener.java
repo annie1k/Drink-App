@@ -1,12 +1,11 @@
-package ui.drink.HomePage;
+package ui.drink.home;
 
 import model.DrinkHistory;
 import persistence.JsonReader;
 import persistence.JsonWriter;
-import ui.drink.History.History;
-import ui.drink.AwardsBag.AwardsBag;
-import ui.drink.BalancePage.AddDrinking;
-import ui.drink.HomePage.DrinkIt;
+import ui.drink.history.History;
+import ui.drink.awards.AwardsBag;
+import ui.drink.balance.AddDrinking;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -38,7 +37,7 @@ public class HPActionListener implements ActionListener {
             DrinkHistory history = app.getDrinkHistory();
             new History(history);
         } else if (e.getActionCommand().equals("bag")) {
-            new AwardsBag(); //haven't fully implemented
+            new AwardsBag(history); //haven't fully implemented
         } else if (e.getActionCommand().equals("load")) {
             loadHistoryAndAwards();
         } else {
