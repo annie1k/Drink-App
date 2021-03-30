@@ -1,17 +1,18 @@
 package ui.drink.HomePage;
 
 import model.DrinkHistory;
-
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 // GUI for Drink It App :)
 public class DrinkIt extends Frame {
-    private static HPActionListener hpActionListener = new HPActionListener();
+    private static HPActionListener hpActionListener;
     private DrinkHistory drinkHistory = new DrinkHistory();
 
+
     public DrinkIt() {
+        hpActionListener = new HPActionListener(this);
         //one frame
         Frame frame = new Frame("Drink It");
 
@@ -100,8 +101,12 @@ public class DrinkIt extends Frame {
         load.addActionListener(hpActionListener);
     }
 
-    public static void main(String[] args) {
-        new DrinkIt();
+    public void setDrinkHistory(DrinkHistory drinkHistory) {
+        this.drinkHistory = drinkHistory;
+    }
+
+    public DrinkHistory getDrinkHistory() {
+        return drinkHistory;
     }
 }
 

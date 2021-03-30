@@ -3,6 +3,10 @@ package ui.drink.HomePage;
 import model.DrinkHistory;
 import persistence.JsonReader;
 import persistence.JsonWriter;
+import ui.drink.History.History;
+import ui.drink.AwardsBag.AwardsBag;
+import ui.drink.BalancePage.AddDrinking;
+import ui.drink.HomePage.DrinkIt;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -15,7 +19,12 @@ public class HPActionListener implements ActionListener {
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
     private DrinkHistory history = new DrinkHistory();
-    private DrinkIt app = new DrinkIt();
+    private DrinkIt app;
+
+    public HPActionListener(DrinkIt app) {
+        this.app = app;
+
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -24,11 +33,12 @@ public class HPActionListener implements ActionListener {
         jsonReader = new JsonReader(JSON_STORE);
 
         if (e.getActionCommand().equals("drinking")) {
-            System.out.println("drinking");
+            new AddDrinking();
         } else if (e.getActionCommand().equals("history")) {
-            System.out.println("history");
+            DrinkHistory history = app.getDrinkHistory();
+            new History(history);
         } else if (e.getActionCommand().equals("bag")) {
-            System.out.println("bag");
+            new AwardsBag(); //haven't fully implemented
         } else if (e.getActionCommand().equals("load")) {
             loadHistoryAndAwards();
         } else {
@@ -42,7 +52,6 @@ public class HPActionListener implements ActionListener {
             jsonWriter.open();
             jsonWriter.write(history);
             System.out.println(history.toString());
-            //jsonWriter.write(bag);
             jsonWriter.close();
             JOptionPane.showMessageDialog(app,
                     "Saved history and awards" + " to " + JSON_STORE);
@@ -57,12 +66,14 @@ public class HPActionListener implements ActionListener {
     private void loadHistoryAndAwards() {
         try {
             history = jsonReader.readHistory();
-            //bag = jsonReader.readAwards();
+            app.setDrinkHistory(history);
             JOptionPane.showMessageDialog(app,
                     "Loaded history and awards bag" + " from " + JSON_STORE);
         } catch (IOException e) {
             JOptionPane.showMessageDialog(app,
                     "Unable to read from file:" + " from " + JSON_STORE);
         }
+
+
     }
 }

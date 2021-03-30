@@ -1,6 +1,4 @@
-package ui;
-
-import ui.handler.LoginHander;
+package ui.drink.LogIn;
 
 import javax.swing.*;
 import java.awt.*;

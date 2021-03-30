@@ -1,6 +1,5 @@
-package ui.handler;
+package ui.drink.LogIn;
 
-import ui.LoginView;
 import ui.drink.HomePage.DrinkIt;
 
 import javax.swing.*;

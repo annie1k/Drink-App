@@ -1,4 +1,4 @@
-package ui;
+package ui.drink.LogIn;
 
 public class DrinkApp {
     public static void main(String[] args) {

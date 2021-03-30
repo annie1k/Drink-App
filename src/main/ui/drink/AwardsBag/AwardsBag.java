@@ -1,35 +1,56 @@
 package ui.drink.AwardsBag;
 
 
-import model.Medal;
-
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
+import model.DrinkHistory;
 import javax.swing.*;
+import java.awt.*;
 
 //"./MetalBank/1.png"
 //https://stackoverflow.com/questions/18027833/adding-image-to-jframe/18027889
 
 public class AwardsBag extends JFrame {
 
-    private Medal image;
+    private DrinkHistory history = new DrinkHistory();
+
 
     public AwardsBag() {
         super("Awards");
-        add(new JLabel(new ImageIcon("./MetalBank/1.png")));
-        setSize(600,400);
+
+
+        setLayout(new FlowLayout());
+
+//        add(new JLabel(new ImageIcon("./MetalBank/1.png")));
+//        add(new JLabel(new ImageIcon("./MetalBank/2.png")));
+//        add(new JLabel(new ImageIcon("./MetalBank/2.png")));
+
+        //displayImages();
+
+        setSize(600, 400);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        setResizable(false);
         setVisible(true);
     }
 
+    // EFFECTS: display all medals earned
+    public void displayAllMedals() {
+        model.AwardsBag bag = history.getAwardsBag();
 
+        System.out.println("you have " + bag.numMedalsInBag() + " medals");
+        System.out.println("Awards: ");
+
+        System.out.println(bag.getBag());
+
+    }
+
+    // EFFECTS: add images
+    public void displayImages() {
+        model.AwardsBag bag = history.getAwardsBag();
+        for (int i = 1; i <= (bag.numMedalsInBag()); i++) {
+            int index = i - 1;
+            System.out.println(bag.getBag().get(index));
+            add(new JLabel(new ImageIcon(String.valueOf(bag.getBag().get(index)))));
+        }
+    }
 
 
     public static void main(String[] args) {

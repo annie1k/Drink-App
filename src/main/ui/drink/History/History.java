@@ -1,25 +1,32 @@
-package ui;
+package ui.drink.History;
 
 import model.DrinkHistory;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 
-public class HistoryLatest extends JFrame {
-    private DrinkHistory history = new DrinkHistory();
-    private List<String> listHistory = new ArrayList<>();
+public class History extends JFrame {
+    private DrinkHistory history;
+    private List<String> listHistory;
 
-    public HistoryLatest() {
+    public History(DrinkHistory history) {
+        this.history = history;
+        listHistory = new ArrayList<>();
+        listOfHistory();
         Container container = this.getContentPane();
         setTitle("History");
-        JLabel label = new JLabel(String.valueOf(listOfHistory()));
 
+        JTextArea textArea = new JTextArea(listHistory.size(),1);
 
-        JScrollPane scrollPane = new JScrollPane(label);
+        System.out.println(listHistory.size());
+
+        for (int i = 0; i < listHistory.size(); i++) {
+            textArea.setText(textArea.getText() + "\n" + listHistory.get(i));
+        }
+
+        JScrollPane scrollPane = new JScrollPane(textArea);
 
         container.add(scrollPane);
 
@@ -36,7 +43,4 @@ public class HistoryLatest extends JFrame {
         return listHistory;
     }
 
-    public static void main(String[] args) {
-        new HistoryLatest();
-    }
 }

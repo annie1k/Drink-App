@@ -32,7 +32,7 @@ public class AwardsBag implements Writable {
         Random rand = new Random();
         Medal medal = new Medal();
         int randMedalNum = rand.nextInt(10) + 1;
-        String randMedal = randMedalNum + ".png";
+        String randMedal = "./MetalBank/" + randMedalNum + ".png";
         medal.setImg(randMedal);
         medal.setDay(day);
         medal.setMonth(month);
