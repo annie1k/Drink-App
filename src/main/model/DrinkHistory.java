@@ -64,7 +64,7 @@ public class DrinkHistory implements Writable {
     }
 
     // MODIFIES: this
-    // EFFECTS: empty the list
+    // EFFECTS: empty the drink history and empty the bag
     public void clearHistory() {
         drinkHistory = new ArrayList<>();
         awardsBag = new AwardsBag();

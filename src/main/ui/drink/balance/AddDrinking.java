@@ -1,14 +1,10 @@
 package ui.drink.balance;
 
 import model.DrinkHistory;
-import ui.drink.history.History;
-import ui.drink.home.DrinkIt;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
+//Class for Add Drink event to history
 public class AddDrinking extends JFrame {
     private AddDrinkingHandler addDrinkingHandler;
     private DrinkHistory history;
@@ -30,6 +26,7 @@ public class AddDrinking extends JFrame {
 
     private static JButton saveButton;
 
+    //constructor
     public AddDrinking(DrinkHistory history) {
         this.history = history;
 

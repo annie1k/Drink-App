@@ -101,10 +101,13 @@ public class DrinkIt extends Frame {
         load.addActionListener(hpActionListener);
     }
 
+    // MODIFIES: this
+    // EFFECTS: set the DrinkHistory
     public void setDrinkHistory(DrinkHistory drinkHistory) {
         this.drinkHistory = drinkHistory;
     }
 
+    // EFFECTS: get the DrinkHistory
     public DrinkHistory getDrinkHistory() {
         return drinkHistory;
     }

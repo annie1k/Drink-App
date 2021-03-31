@@ -6,14 +6,18 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+//class of action listener for LoginView
 public class LoginHander implements ActionListener {
     private LoginView loginView;
 
+    // constructor
     public LoginHander(LoginView loginView) {
         this.loginView = loginView;
     }
 
 
+    // MODIFIES: this
+    // EFFECTS: let app drink it page run if login successfully, otherwise give pop out reminder
     @Override
     public void actionPerformed(ActionEvent e) {
         JButton button = (JButton) e.getSource();

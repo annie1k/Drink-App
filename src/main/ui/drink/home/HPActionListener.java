@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+// class of action listener for DrinkIt GUI frame
 public class HPActionListener implements ActionListener {
     private static final String JSON_STORE = "./data/drinkApp.json";
     private JsonWriter jsonWriter;
@@ -25,6 +26,7 @@ public class HPActionListener implements ActionListener {
 
     }
 
+    //EFFECTS: open according page if click the corresponding page, or load, save the history and bag
     @Override
     public void actionPerformed(ActionEvent e) {
 

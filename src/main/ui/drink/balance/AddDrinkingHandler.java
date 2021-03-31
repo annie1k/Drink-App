@@ -3,13 +3,12 @@ package ui.drink.balance;
 import model.*;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Scanner;
 
 import static model.AwardsBag.findMedal;
 
+//Class for action listener for AddDrinking class
 public class AddDrinkingHandler implements ActionListener {
     private JTextField year;
     private JTextField month;
@@ -24,6 +23,7 @@ public class AddDrinkingHandler implements ActionListener {
     private TodayDrinkingGoal goal = new TodayDrinkingGoal(500);
     private DrinkingBalance balance;
 
+    // constructor
     public AddDrinkingHandler(DrinkHistory history, JTextField year, JTextField month, JTextField day,
                               JTextField addBalance, JTextField subBalance, JTextField addGoal, JTextField subGoal) {
         this.history = history;
@@ -37,6 +37,9 @@ public class AddDrinkingHandler implements ActionListener {
         this.subGoal = subGoal;
     }
 
+
+    //MODIFIES: Json file, DrinkingHistory, AwardsBag
+    //EFFECTS: save everything if the button "save" clicked
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Save")) {

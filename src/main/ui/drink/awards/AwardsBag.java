@@ -6,12 +6,14 @@ import model.DrinkHistory;
 import javax.swing.*;
 import java.awt.*;
 
+// Class for swing AwardsBag
 
 public class AwardsBag extends JFrame {
 
     private DrinkHistory history;
 
 
+    //constructor
     public AwardsBag(DrinkHistory history) {
         this.history = history;
 

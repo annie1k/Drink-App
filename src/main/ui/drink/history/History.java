@@ -7,12 +7,15 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
+// Class for list of History for GUI
+
 public class History extends JFrame {
     private DrinkHistory history;
     private List<String> listHistory;
     private JButton clearButton;
     private JTextArea textArea;
 
+    // constructor
     public History(DrinkHistory history) {
         JPanel southPanel = new JPanel();
         this.history = history;
@@ -43,6 +46,8 @@ public class History extends JFrame {
         this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     }
 
+    // MODIFIES: DrinkHistory
+    // EFFECTS: a list of history
     public List<String> listOfHistory() {
 
         for (int i = 0; i < history.numDatesRecorded(); i++) {
@@ -51,6 +56,8 @@ public class History extends JFrame {
         return listHistory;
     }
 
+    // MODIFIES: DrinkHistory, Awards
+    // EFFECTS: clear history and award bag
     public void clear() {
         history.clearHistory();
         textArea.setText("");

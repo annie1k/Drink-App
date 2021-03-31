@@ -3,6 +3,7 @@ package ui.drink.login;
 import javax.swing.*;
 import java.awt.*;
 
+//class for the LoginView GUI page
 public class LoginView extends JFrame {
 
     JLabel nameLabel = new JLabel("Welcome to Drink It App",JLabel.CENTER);
@@ -18,8 +19,7 @@ public class LoginView extends JFrame {
     JButton resetBtn = new JButton("Clear");
     LoginHander loginHander;
 
-
-
+    // constructor
     public LoginView() {
         super("Drink It App");
         Container contentPane = getContentPane();
@@ -95,10 +95,12 @@ public class LoginView extends JFrame {
         centerPanel.add(resetBtn);
     }
 
+    //EFFECTS: return user name input from user
     public JTextField getUserNameInput() {
         return userNameInput;
     }
 
+    //EFFECTS: return password input from user
     public JPasswordField getPwdInput() {
         return pwdInput;
     }
