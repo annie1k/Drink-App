@@ -15,6 +15,7 @@ public class HistoryPage extends JFrame implements SubPages {
     private List<String> listHistory;
     private JButton clearButton;
     private JTextArea textArea;
+    private HistoryHandler historyHandler;
 
     // constructor
     public HistoryPage(DrinkHistory history) {
@@ -34,7 +35,8 @@ public class HistoryPage extends JFrame implements SubPages {
         JScrollPane scrollPane = new JScrollPane(textArea);
 
         clearButton = new JButton("Clear");
-        clearButton.addActionListener(new HistoryHandler(this));
+        historyHandler = new HistoryHandler(this);
+        clearButton.addActionListener(historyHandler);
         southPanel.add(clearButton);
 
         container.add(scrollPane,BorderLayout.CENTER);

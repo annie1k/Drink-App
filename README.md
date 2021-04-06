@@ -67,7 +67,7 @@ experience.
 **Phase 4: Task 2**:
 
 Include a type hierarchy in your code other than the one that uses the Saveable interface introduced in Phase 2.
-You must have more than one subclass and your subclasses must have distinct functionality.  They must therefore 
+You must have more than one subclasses and your subclasses must have distinct functionality.  They must therefore 
 override at least one method inherited from a super type and override it in different ways in each of the subclasses.
 
 -more specifically: My AwardsBagPage, AddDrinkingPage, and History Page are
@@ -75,3 +75,16 @@ subpages for DrinkIt (which is the home page); So I generated a interface called
 Subpages and let AwardsBagPage, AddDrinkingPage, and History Page implement it.
 So, for each of them, they have to have a method called setUp and a method called quit.
 Because all of them should have heavy workload to set up and have to be "closeable"
+
+**Phase 4: Task 3**:
+
+There are lots of code I will need to refactor them in the summer. 
+-First thing I will do is improve cohesion for each class. 
+In many of my class in module and UI, many methods such as search if the date is already exist
+can be put into classes in the module package.
+-Second thing I will do is create a Map for Awards and History. Currently, awards bag and history working fairly
+independent. However, both of them need to know what day is this medal gained, were they already existed. So, there
+are a lot to do with the date. Maybe the hashset can make this more elegant. Every time when adding the history,
+also check whether the medal is earned or not. Using something like .contains, if not, then add in case. And override
+is needed here as well, so they can compare objects more easily.
+-More will be discovered during the process of refactoring I believe.
