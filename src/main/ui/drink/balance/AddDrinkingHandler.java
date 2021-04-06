@@ -85,7 +85,7 @@ public class AddDrinkingHandler implements ActionListener {
 
         findHistory2(inputDay, inputMonth, inputYear, date);
         int inputInt = Integer.parseInt(addBalance.getText());
-        balance.addBalance(inputInt);
+        balance.addValue(inputInt);
 
         if (balance.isAchieved()) {
             addMedal(inputDay, inputMonth, inputYear, date);
@@ -115,7 +115,7 @@ public class AddDrinkingHandler implements ActionListener {
         findHistory2(inputDay, inputMonth, inputYear, date);
 
         int inputInt = Integer.parseInt(subBalance.getText());
-        balance.subBalance(inputInt);
+        balance.subFromIt(inputInt);
 
         if ((!balance.isAchieved()) && (history.getAwardsBag().numMedalsInBag() > 0)) {
             subMedal(inputDay, inputMonth, inputYear, date);
@@ -153,7 +153,7 @@ public class AddDrinkingHandler implements ActionListener {
             balance.addGoal(goal1);
             goal = balance.getGoal();
         } else {
-            goal.addGoal(goal1);
+            goal.addValue(goal1);
         }
     }
 
@@ -172,7 +172,7 @@ public class AddDrinkingHandler implements ActionListener {
         goal = balance.getGoal();
 
         int inputInt = Integer.parseInt(subGoal.getText());
-        goal.subGoal(inputInt);
+        goal.subFromIt(inputInt);
 
         if (balance.isAchieved()) {
             addMedal(inputDay, inputMonth, inputYear, date);

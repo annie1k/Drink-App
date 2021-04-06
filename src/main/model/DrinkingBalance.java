@@ -9,7 +9,7 @@ import java.util.List;
 
 // Represent the water drinking balance in a day
 // plus: Representing the the drink date, will be used for history tracking, in drinking history class
-public class DrinkingBalance implements Writable {
+public class DrinkingBalance extends ChangeableClass implements Writable {
 
     // changing properties of a day's drinking amount
     // balance is how many ml have drank so far
@@ -67,14 +67,14 @@ public class DrinkingBalance implements Writable {
     // REQUIRES: amount > 0
     // MODIFIES: this
     // EFFECTS: adds amount ml to balance
-    public void addBalance(int amount) {
+    public void addValue(int amount) {
         balance = balance + amount;
     }
 
     // REQUIRES: balance > amount > 0
     // MODIFIES: this
     // EFFECTS: subtracts amount ml from balance
-    public void subBalance(int amount) {
+    public void subValue(int amount) {
         balance = balance - amount;
     }
 
@@ -97,14 +97,6 @@ public class DrinkingBalance implements Writable {
 
 
     // MODIFIES: this
-    // EFFECTS: make date into clean format and return the date with "-" symbol
-    public String getDate() {
-        String formatDay = cleanFormat(day);
-        String formatMonth = cleanFormat(month);
-        return formatDay + "-" + formatMonth + "-" + year;
-    }
-
-    // MODIFIES: this
     // EFFECTS: make single digit day and month into two digit
     public String cleanFormat(int i) {
         if (i < 10) {
@@ -113,6 +105,15 @@ public class DrinkingBalance implements Writable {
             return "" + i;
         }
     }
+
+    // MODIFIES: this
+    // EFFECTS: make date into clean format and return the date with "-" symbol
+    public String getDate() {
+        String formatDay = cleanFormat(day);
+        String formatMonth = cleanFormat(month);
+        return formatDay + "-" + formatMonth + "-" + year;
+    }
+
 
     // MODIFIES: this
     // EFFECTS: combine the date and the current balance

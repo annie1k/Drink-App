@@ -23,39 +23,39 @@ public class TodayDrinkingGoalTest {
 
     @Test
     public void testAddGoalOnce() {
-        goal.addGoal(CHANGE_VALUE);
+        goal.addValue(CHANGE_VALUE);
         assertEquals(INITIAL_VALUE + CHANGE_VALUE, goal.getGoal());
     }
 
     @Test
     public void testAddGoalMultiple() {
-        goal.addGoal(CHANGE_VALUE);
-        goal.addGoal(CHANGE_VALUE);
+        goal.addValue(CHANGE_VALUE);
+        goal.addValue(CHANGE_VALUE);
         assertEquals(INITIAL_VALUE + CHANGE_VALUE * 2, goal.getGoal());
     }
 
     @Test
     public void testSubGoalSmall() {
-        goal.subGoal(CHANGE_VALUE);
+        goal.subValue(CHANGE_VALUE);
         assertEquals(INITIAL_VALUE - CHANGE_VALUE, goal.getGoal());
     }
 
     @Test
     public void testSubGoalMiddle() {
-        goal.subGoal(CHANGE_VALUE / 2);
+        goal.subValue(CHANGE_VALUE / 2);
         assertEquals(INITIAL_VALUE - CHANGE_VALUE / 2, goal.getGoal());
     }
 
     @Test
     public void testSubGoalMAX() {
-        goal.subGoal(INITIAL_VALUE);
+        goal.subValue(INITIAL_VALUE);
         assertEquals(0, goal.getGoal());
     }
 
     @Test
     public void testSubGoalMultiple() {
-        goal.subGoal(CHANGE_VALUE);
-        goal.subGoal(CHANGE_VALUE);
+        goal.subValue(CHANGE_VALUE);
+        goal.subValue(CHANGE_VALUE);
         assertEquals(INITIAL_VALUE - CHANGE_VALUE * 2, goal.getGoal());
     }
 

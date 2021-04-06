@@ -56,6 +56,7 @@ public class Medal {
                 year, img);
     }
 
+
     // MODIFIES: this
     // EFFECTS: make single digit day and month into two digit
     public String cleanFormat(int i) {

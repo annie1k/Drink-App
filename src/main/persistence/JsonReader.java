@@ -100,7 +100,7 @@ public class JsonReader {
 
 
         DrinkingBalance drinkingBalance = new DrinkingBalance(day, month, year);
-        drinkingBalance.addBalance(balance);
+        drinkingBalance.addValue(balance);
         drinkingBalance.addGoal(goal);
 
         dh.addDate(drinkingBalance);

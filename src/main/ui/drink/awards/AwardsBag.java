@@ -40,6 +40,7 @@ public class AwardsBag extends JFrame {
             System.out.println(bag.getBag().get(index).getImg());
             add(new JLabel(new ImageIcon(bag.getBag().get(index).getImg())));
         }
+        assert (!((bag.getBag().size() != 0) && (history.getDrinkHistory().size() == 0)));
     }
 
 

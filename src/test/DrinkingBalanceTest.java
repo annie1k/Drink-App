@@ -28,7 +28,7 @@ public class DrinkingBalanceTest {
 
     @Test
     public void testTodayDrinkingBalance() {
-        balance.addBalance(CHANGE_VALUE);
+        balance.addValue(CHANGE_VALUE);
         String actual = balance.getDate();
         assertEquals(CHANGE_VALUE, balance.getBalance());
         assertEquals("01-01-2021", actual);
@@ -37,7 +37,7 @@ public class DrinkingBalanceTest {
     @Test
     public void testDrinkingBalance() {
         balance2 = new DrinkingBalance(1,1,2021,500);
-        balance2.addBalance(CHANGE_VALUE);
+        balance2.addValue(CHANGE_VALUE);
         String actual = balance2.getDate();
         assertEquals(CHANGE_VALUE + 500, balance2.getBalance());
         assertEquals("01-01-2021", actual);
@@ -45,7 +45,7 @@ public class DrinkingBalanceTest {
 
     @Test
     public void testAddBalance() {
-        balance.addBalance(CHANGE_VALUE);
+        balance.addValue(CHANGE_VALUE);
         assertEquals( CHANGE_VALUE, balance.getBalance());
     }
 
@@ -58,40 +58,40 @@ public class DrinkingBalanceTest {
 
     @Test
     public void testSubBalanceSmall() {
-        balance.addBalance(INITIAL_VALUE);
-        balance.subBalance(CHANGE_VALUE);
+        balance.addValue(INITIAL_VALUE);
+        balance.subValue(CHANGE_VALUE);
         assertEquals(INITIAL_VALUE - CHANGE_VALUE, balance.getBalance());
     }
 
     @Test
     public void testSubBalanceMiddle() {
-        balance.addBalance(INITIAL_VALUE);
-        balance.subBalance(CHANGE_VALUE / 2);
+        balance.addValue(INITIAL_VALUE);
+        balance.subValue(CHANGE_VALUE / 2);
         assertEquals(INITIAL_VALUE - CHANGE_VALUE / 2, balance.getBalance());
     }
 
     @Test
     public void testSubBalanceMAX() {
-        balance.addBalance(INITIAL_VALUE);
-        balance.subBalance(INITIAL_VALUE);
+        balance.addValue(INITIAL_VALUE);
+        balance.subValue(INITIAL_VALUE);
         assertEquals(0, balance.getBalance());
     }
 
     @Test
     public void testIsAchievedFail() {
-        balance.addBalance(INITIAL_VALUE - CHANGE_VALUE);
+        balance.addValue(INITIAL_VALUE - CHANGE_VALUE);
         assertFalse(balance.isAchieved());
     }
 
     @Test
     public void testIsAchievedEqualSuccess() {
-        balance.addBalance(INITIAL_VALUE);
+        balance.addValue(INITIAL_VALUE);
         assertTrue(balance.isAchieved());
     }
 
     @Test
     public void testIsAchievedOverSuccess() {
-        balance.addBalance(INITIAL_VALUE + CHANGE_VALUE);
+        balance.addValue(INITIAL_VALUE + CHANGE_VALUE);
         assertTrue(balance.isAchieved());
     }
 
@@ -128,14 +128,14 @@ public class DrinkingBalanceTest {
 
     @Test
     public void testCombineDateBalanceChange() {
-        balance.addBalance(CHANGE_VALUE);
+        balance.addValue(CHANGE_VALUE);
         String date = balance.getDate();
         assertEquals(date +" corresponding balance: "+ balance.getBalance(),balance.combineDateBalance());
 
     }
     @Test
     public void testCombineDateBalanceChangeMultiple() {
-        balance.addBalance(CHANGE_VALUE*5);
+        balance.addValue(CHANGE_VALUE*5);
         String date = balance.getDate();
         assertEquals(date +" corresponding balance: "+ balance.getBalance(),balance.combineDateBalance());
 

@@ -224,7 +224,7 @@ public class RespondCommand {
 
         inputInt = new Scanner(System.in);
         int balance1 = inputInt.nextInt();
-        balance.addBalance(balance1);
+        balance.addValue(balance1);
 
         System.out.println("current balance: " + balance.getBalance());
         if (balance.isAchieved()) {
@@ -267,7 +267,7 @@ public class RespondCommand {
 
         inputInt = new Scanner(System.in);
         int balance2 = inputInt.nextInt();
-        balance.subBalance(balance2);
+        balance.subFromIt(balance2);
 
         System.out.println("current balance: " + balance.getBalance());
         if ((!balance.isAchieved()) && (history.getAwardsBag().numMedalsInBag() > 0)) {
@@ -325,7 +325,7 @@ public class RespondCommand {
             balance.addGoal(goal1);
             goal = balance.getGoal();
         } else {
-            goal.addGoal(goal1);
+            goal.addValue(goal1);
         }
     }
 
@@ -354,7 +354,7 @@ public class RespondCommand {
 
         inputInt = new Scanner(System.in);
         int goal2 = inputInt.nextInt();
-        goal.subGoal(goal2);
+        goal.subFromIt(goal2);
 
         System.out.println("current goal: " + goal.getGoal());
         if (balance.isAchieved()) {

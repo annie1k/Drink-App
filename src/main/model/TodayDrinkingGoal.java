@@ -4,7 +4,7 @@ import org.json.JSONObject;
 import persistence.Writable;
 
 // Represent the water drinking goal's amount in a day
-public class TodayDrinkingGoal implements Writable {
+public class TodayDrinkingGoal extends ChangeableClass implements Writable  {
 
     // changing properties of today's drinking amount
     // goal is set for today's water drink goal
@@ -22,14 +22,14 @@ public class TodayDrinkingGoal implements Writable {
     // REQUIRES: amount > 0
     // MODIFIES: this
     // EFFECTS: adds amount ml to goal
-    public void addGoal(int amount) {
+    public void addValue(int amount) {
         goal = goal + amount;
     }
 
     // REQUIRES: goal > amount > 0
     // MODIFIES: this
     // EFFECTS: subtracts amount ml from goal
-    public void subGoal(int amount) {
+    public void subValue(int amount) {
         goal = goal - amount;
     }
 

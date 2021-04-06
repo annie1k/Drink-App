@@ -2,38 +2,30 @@
     "balances": [
         {
             "date": {
-                "month": 4,
+                "month": 1,
                 "year": 2000,
-                "day": 10
+                "day": 1
             },
             "goal": {"goal": 500},
-            "balance": 1200
+            "balance": 0
         },
         {
             "date": {
-                "month": 3,
-                "year": 2020,
-                "day": 30
+                "month": 4,
+                "year": 2021,
+                "day": 5
             },
-            "goal": {"goal": 600},
-            "balance": 2000
+            "goal": {"goal": 900},
+            "balance": 4700
         }
     ],
     "bag": {
-        "medals": [
-            {
-                "img": "./MetalBank/5.png",
-                "month": 4,
-                "year": 2000,
-                "day": 10
-            },
-            {
-                "img": "./MetalBank/8.png",
-                "month": 3,
-                "year": 2020,
-                "day": 30
-            }
-        ],
-        "total number": 2
+        "medals": [{
+            "img": "./MetalBank/3.png",
+            "month": 4,
+            "year": 2021,
+            "day": 5
+        }],
+        "total number": 1
     }
 }
