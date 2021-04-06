@@ -1,5 +1,6 @@
 package ui.drink.login;
 
+import ui.drink.SubPages;
 import ui.drink.home.DrinkIt;
 
 import javax.swing.*;
@@ -7,11 +8,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 //class of action listener for LoginView
-public class LoginHander implements ActionListener {
+public class LoginHandler implements ActionListener {
     private LoginView loginView;
 
     // constructor
-    public LoginHander(LoginView loginView) {
+    public LoginHandler(LoginView loginView) {
         this.loginView = loginView;
     }
 

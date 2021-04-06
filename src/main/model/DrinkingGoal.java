@@ -4,7 +4,7 @@ import org.json.JSONObject;
 import persistence.Writable;
 
 // Represent the water drinking goal's amount in a day
-public class TodayDrinkingGoal extends ChangeableClass implements Writable  {
+public class DrinkingGoal extends ChangeableClass implements Writable  {
 
     // changing properties of today's drinking amount
     // goal is set for today's water drink goal
@@ -14,7 +14,7 @@ public class TodayDrinkingGoal extends ChangeableClass implements Writable  {
 
     // REQUIRES: initialGoal >= 500
     // EFFECTS: set goal to it's initial value
-    public TodayDrinkingGoal(int initialGoal) {
+    public DrinkingGoal(int initialGoal) {
         goal = initialGoal;
     }
 

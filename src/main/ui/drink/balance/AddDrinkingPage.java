@@ -1,11 +1,13 @@
 package ui.drink.balance;
 
 import model.DrinkHistory;
+import ui.drink.SubPages;
+
 import javax.swing.*;
 import java.awt.*;
 
 //Class for Add Drink event to history
-public class AddDrinking extends JFrame {
+public class AddDrinkingPage extends JFrame implements SubPages {
     private AddDrinkingHandler addDrinkingHandler;
     private DrinkHistory history;
     private static JTextField year;
@@ -27,10 +29,32 @@ public class AddDrinking extends JFrame {
     private static JButton saveButton;
 
     //constructor
-    public AddDrinking(DrinkHistory history) {
+    public AddDrinkingPage(DrinkHistory history) {
         this.history = history;
 
 
+        setUp();
+
+
+        addDrinkingHandler = new AddDrinkingHandler(history,year, month, day, addBalance, subBalance, addGoal, subGoal);
+        saveButton.addActionListener(addDrinkingHandler);
+
+        setLayout(new FlowLayout());
+
+        addEverything(yearLabel, year, monthLabel, month, dayLabel, day, addBalanceLabel, addBalance,
+                addGoalLabel, addGoal, subBalanceLabel, subBalance, subGoalLabel, subGoal, saveButton);
+
+
+        quit();
+
+    }
+
+
+
+    //MODIFIES: this
+    //EFFECTS: set up this page
+    @Override
+    public void setUp() {
         setTitle("Add Balance");
 
         setBounds(0, 0, 1000, 100);
@@ -45,18 +69,16 @@ public class AddDrinking extends JFrame {
 
         //1 button
         saveButton = new JButton("Save");
-        addDrinkingHandler = new AddDrinkingHandler(history,year, month, day, addBalance, subBalance, addGoal, subGoal);
-        saveButton.addActionListener(addDrinkingHandler);
-
-        setLayout(new FlowLayout());
-
-        addEverything(yearLabel, year, monthLabel, month, dayLabel, day, addBalanceLabel, addBalance,
-                addGoalLabel, addGoal, subBalanceLabel, subBalance, subGoalLabel, subGoal, saveButton);
 
         this.setVisible(true);
         setResizable(false);
-        this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+    }
 
+    //MODIFIES: this
+    //EFFECTS: close this page
+    @Override
+    public void quit() {
+        this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
     }
 
     // MODIFIES: this

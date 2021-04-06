@@ -17,7 +17,7 @@ public class LoginView extends JFrame {
     JPasswordField pwdInput = new JPasswordField();
     JButton loginBtn = new JButton("Log In");
     JButton resetBtn = new JButton("Clear");
-    LoginHander loginHander;
+    LoginHandler loginHandler;
 
     // constructor
     public LoginView() {
@@ -28,10 +28,10 @@ public class LoginView extends JFrame {
 
         setLayout(userNameLabel,userNameInput,pwdLabel,pwdInput,loginBtn,resetBtn);
 
-        loginHander = new LoginHander(this);
+        loginHandler = new LoginHandler(this);
 
-        loginBtn.addActionListener(loginHander);
-        resetBtn.addActionListener(loginHander);
+        loginBtn.addActionListener(loginHandler);
+        resetBtn.addActionListener(loginHandler);
 
         contentPane.add(nameLabel,BorderLayout.NORTH);
         contentPane.add(centerPanel,BorderLayout.CENTER);

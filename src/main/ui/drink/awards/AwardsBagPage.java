@@ -2,31 +2,44 @@ package ui.drink.awards;
 
 
 import model.DrinkHistory;
+import ui.drink.SubPages;
 
 import javax.swing.*;
 import java.awt.*;
 
 // Class for swing AwardsBag
 
-public class AwardsBag extends JFrame {
+public class AwardsBagPage extends JFrame implements SubPages {
 
     private DrinkHistory history;
 
 
     //constructor
-    public AwardsBag(DrinkHistory history) {
+    public AwardsBagPage(DrinkHistory history) {
         this.history = history;
 
-        setTitle("Awards");
-
-
-        setLayout(new FlowLayout());
-
+        setUp();
 
         displayImages();
 
-        setSize(1500, 1000);
+        quit();
+
+    }
+
+    //MODIFIES: this
+    //EFFECTS: close this page
+    @Override
+    public void quit() {
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+    }
+
+    //MODIFIES: this
+    //EFFECTS: set up this page
+    @Override
+    public void setUp() {
+        setTitle("Awards");
+        setLayout(new FlowLayout());
+        setSize(1500, 1000);
         setLocationRelativeTo(null);
         setVisible(true);
     }

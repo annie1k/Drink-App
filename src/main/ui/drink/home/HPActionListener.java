@@ -3,9 +3,9 @@ package ui.drink.home;
 import model.DrinkHistory;
 import persistence.JsonReader;
 import persistence.JsonWriter;
-import ui.drink.history.History;
-import ui.drink.awards.AwardsBag;
-import ui.drink.balance.AddDrinking;
+import ui.drink.history.HistoryPage;
+import ui.drink.awards.AwardsBagPage;
+import ui.drink.balance.AddDrinkingPage;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -34,12 +34,12 @@ public class HPActionListener implements ActionListener {
         jsonReader = new JsonReader(JSON_STORE);
 
         if (e.getActionCommand().equals("drinking")) {
-            new AddDrinking(history);
+            new AddDrinkingPage(history);
         } else if (e.getActionCommand().equals("history")) {
             DrinkHistory history = app.getDrinkHistory();
-            new History(history);
+            new HistoryPage(history);
         } else if (e.getActionCommand().equals("bag")) {
-            new AwardsBag(history); //haven't fully implemented
+            new AwardsBagPage(history); //haven't fully implemented
         } else if (e.getActionCommand().equals("load")) {
             loadHistoryAndAwards();
         } else {

@@ -1,13 +1,14 @@
 package ui.drink.history;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 //class of action listener for history class of GUI
 public class HistoryHandler implements ActionListener {
-    private History app;
+    private HistoryPage app;
 
     //constructor
-    public HistoryHandler(History app) {
+    public HistoryHandler(HistoryPage app) {
         this.app = app;
     }
 

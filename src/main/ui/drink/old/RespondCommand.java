@@ -43,7 +43,7 @@ public class RespondCommand {
     private boolean runProgram;
     private AwardsBag bag = new AwardsBag();
     private DrinkHistory history = new DrinkHistory();
-    private TodayDrinkingGoal goal = new TodayDrinkingGoal(500);
+    private DrinkingGoal goal = new DrinkingGoal(500);
     private DrinkingBalance balance = new DrinkingBalance(day, month, year);
 
 
@@ -267,7 +267,7 @@ public class RespondCommand {
 
         inputInt = new Scanner(System.in);
         int balance2 = inputInt.nextInt();
-        balance.subFromIt(balance2);
+        balance.subValue(balance2);
 
         System.out.println("current balance: " + balance.getBalance());
         if ((!balance.isAchieved()) && (history.getAwardsBag().numMedalsInBag() > 0)) {
@@ -354,7 +354,7 @@ public class RespondCommand {
 
         inputInt = new Scanner(System.in);
         int goal2 = inputInt.nextInt();
-        goal.subFromIt(goal2);
+        goal.subValue(goal2);
 
         System.out.println("current goal: " + goal.getGoal());
         if (balance.isAchieved()) {

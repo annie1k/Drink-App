@@ -1,11 +1,7 @@
 package model;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
-
-import java.util.ArrayList;
-import java.util.List;
 
 // Represent the water drinking balance in a day
 // plus: Representing the the drink date, will be used for history tracking, in drinking history class
@@ -20,7 +16,7 @@ public class DrinkingBalance extends ChangeableClass implements Writable {
     private int year;
     private int month;
     private int day;
-    private TodayDrinkingGoal goal = new TodayDrinkingGoal(500);
+    private DrinkingGoal goal = new DrinkingGoal(500);
     //private AwardsBag bag = new AwardsBag();
 
 
@@ -54,12 +50,12 @@ public class DrinkingBalance extends ChangeableClass implements Writable {
     // MODIFIES: this
     // EFFECTS: adds goal with amount in ml
     public void addGoal(int goal) {
-        this.goal = new TodayDrinkingGoal(goal);
+        this.goal = new DrinkingGoal(goal);
     }
 
 
     // EFFECTS: return current goal in ml
-    public TodayDrinkingGoal getGoal() {
+    public DrinkingGoal getGoal() {
         return goal;
     }
 

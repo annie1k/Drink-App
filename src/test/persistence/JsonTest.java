@@ -8,7 +8,7 @@ import model.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class JsonTest {
-    protected void checkHistory(DrinkingBalance balance, AwardsBag bag, DrinkHistory history, TodayDrinkingGoal goal,
+    protected void checkHistory(DrinkingBalance balance, AwardsBag bag, DrinkHistory history, DrinkingGoal goal,
                                 Medal medal, String dateb, String datem) {
         assertEquals(bag, history.getAwardsBag());
         assertEquals(balance, balance.getBalance());

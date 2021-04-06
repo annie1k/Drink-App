@@ -1,4 +1,4 @@
-import model.TodayDrinkingGoal;
+import model.DrinkingGoal;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -6,14 +6,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 // Unit tests for TodayDrinkingGoalTest class
-public class TodayDrinkingGoalTest {
-    private TodayDrinkingGoal goal;
+public class DrinkingGoalTest {
+    private DrinkingGoal goal;
     private int CHANGE_VALUE = 1;
     private int INITIAL_VALUE = 500;
 
     @BeforeEach
     public void runBefore(){
-        goal = new TodayDrinkingGoal(INITIAL_VALUE);
+        goal = new DrinkingGoal(INITIAL_VALUE);
     }
 
     @Test

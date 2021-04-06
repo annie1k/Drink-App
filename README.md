@@ -62,3 +62,16 @@ experience.
   by some understandable and easy read graphs.
   
 - As a user, I hope it is a free and clean application.
+
+
+**Phase 4: Task 2**:
+
+Include a type hierarchy in your code other than the one that uses the Saveable interface introduced in Phase 2.
+You must have more than one subclass and your subclasses must have distinct functionality.  They must therefore 
+override at least one method inherited from a super type and override it in different ways in each of the subclasses.
+
+-more specifically: My AwardsBagPage, AddDrinkingPage, and History Page are
+subpages for DrinkIt (which is the home page); So I generated a interface called
+Subpages and let AwardsBagPage, AddDrinkingPage, and History Page implement it.
+So, for each of them, they have to have a method called setUp and a method called quit.
+Because all of them should have heavy workload to set up and have to be "closeable"

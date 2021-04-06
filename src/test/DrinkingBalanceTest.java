@@ -1,5 +1,5 @@
 import model.DrinkingBalance;
-import model.TodayDrinkingGoal;
+import model.DrinkingGoal;
 import org.json.JSONObject;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class DrinkingBalanceTest {
     private DrinkingBalance balance;
     private DrinkingBalance balance2;
-    private TodayDrinkingGoal goal;
+    private DrinkingGoal goal;
     private int year;
     private int month;
     private int day;
@@ -20,7 +20,7 @@ public class DrinkingBalanceTest {
     @BeforeEach
     public void runBefore(){
         balance = new DrinkingBalance(1,1,2021);
-        goal = new TodayDrinkingGoal(INITIAL_VALUE);
+        goal = new DrinkingGoal(INITIAL_VALUE);
         year = 2021;
         day = 1;
         month = 1;
@@ -69,6 +69,7 @@ public class DrinkingBalanceTest {
         balance.subValue(CHANGE_VALUE / 2);
         assertEquals(INITIAL_VALUE - CHANGE_VALUE / 2, balance.getBalance());
     }
+
 
     @Test
     public void testSubBalanceMAX() {

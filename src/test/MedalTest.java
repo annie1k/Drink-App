@@ -1,6 +1,4 @@
-import model.DrinkingBalance;
 import model.Medal;
-import model.TodayDrinkingGoal;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
