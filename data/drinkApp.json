@@ -1,15 +1,54 @@
 {
-    "balances": [{
-        "date": {
-            "month": 1,
-            "year": 2000,
-            "day": 1
+    "balances": [
+        {
+            "date": {
+                "month": 1,
+                "year": 2000,
+                "day": 1
+            },
+            "goal": {"goal": 500},
+            "balance": 100999
         },
-        "goal": {"goal": 500},
-        "balance": 5000
-    }],
+        {
+            "date": {
+                "month": 1,
+                "year": 2020,
+                "day": 1
+            },
+            "goal": {"goal": 600},
+            "balance": 600
+        },
+        {
+            "date": {
+                "month": 10,
+                "year": 2021,
+                "day": 10
+            },
+            "goal": {"goal": 1000},
+            "balance": 1200
+        }
+    ],
     "bag": {
-        "medals": [],
-        "total number": 0
+        "medals": [
+            {
+                "img": "./MetalBank/3.png",
+                "month": 1,
+                "year": 2000,
+                "day": 1
+            },
+            {
+                "img": "./MetalBank/8.png",
+                "month": 1,
+                "year": 2020,
+                "day": 1
+            },
+            {
+                "img": "./MetalBank/9.png",
+                "month": 10,
+                "year": 2021,
+                "day": 10
+            }
+        ],
+        "total number": 3
     }
 }

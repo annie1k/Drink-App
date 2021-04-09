@@ -36,6 +36,7 @@ public class LoginHandler implements ActionListener {
             if (isAdmin()) {
                 new DrinkIt();
                 System.out.println("true");
+                loginView.setVisible(false);
             } else {
                 JOptionPane.showMessageDialog(loginView, "user name or password incorrect");
             }
